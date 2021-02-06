@@ -29,7 +29,7 @@ woman(dominique).
 woman(victoire).
 
 parent(james,harry).
-parent(lily,garry).
+parent(lily,harry).
 
 parent(arthur,ginny).
 parent(arthur,ron).
