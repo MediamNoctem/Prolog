@@ -129,3 +129,6 @@ grand_dats(X):-grand_da(Y,X),write(Y),nl,fail.
 grand_pa_and_son(X,Y):-man(Y),grand_pa(X,Y);grand_pa(Y,X),man(X).
 
 grand_ma_and_da(X,Y):-woman(X),woman(Y),(parent(Z,Y),parent(X,Z);parent(Z,X),parent(Y,Z)).
+
+uncle(X,Y):-parent(Z,Y),brother(X,Z).
+uncle(X):-uncle(Y,X),write(Y),nl,fail.
