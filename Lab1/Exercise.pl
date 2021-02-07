@@ -132,3 +132,6 @@ grand_ma_and_da(X,Y):-woman(X),woman(Y),(parent(Z,Y),parent(X,Z);parent(Z,X),par
 
 uncle(X,Y):-parent(Z,Y),brother(X,Z).
 uncle(X):-uncle(Y,X),write(Y),nl,fail.
+
+niece(X,Y):-woman(X),parent(Z,X),b_s(Y,Z).
+nieces(X):-niece(Y,X),write(Y),nl,fail.
