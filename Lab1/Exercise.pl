@@ -1,5 +1,9 @@
 man(james).
 man(arthur).
+man(richard).
+man(daniel).
+man(jake).
+man(renard).
 man(harry).
 man(ron).
 man(fred).
@@ -15,6 +19,10 @@ man(james2).
 
 woman(lily).
 woman(molly).
+woman(maria).
+woman(tiana).
+woman(helen).
+woman(apolline).
 woman(ginny).
 woman(hermione).
 woman(angelina).
@@ -46,6 +54,18 @@ parent(molly,george).
 parent(molly,percy).
 parent(molly,charlie).
 parent(molly,bill).
+
+parent(maria,hermione).
+parent(richard,hermione).
+
+parent(daniel,angelina).
+parent(tiana,angelina).
+
+parent(jake,audrey).
+parent(helen,audrey).
+
+parent(apolline,fleur).
+parent(renard,fleur).
 
 parent(harry,albus).
 parent(harry,james2).
@@ -99,3 +119,6 @@ husband(X):-husband(Y,X),write(Y).
 
 b_s(X,Y):-mother(Z,X),mother(Z,Y),X\=Y.
 b_s(X):-b_s(Y,X),write(Y),nl,fail.
+
+grand_pa(X,Y):-man(X),parent(Z,Y),parent(X,Z).
+grand_pas(X):-grand_pa(Y,X),write(Y),nl,fail.
