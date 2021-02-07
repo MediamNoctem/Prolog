@@ -122,3 +122,6 @@ b_s(X):-b_s(Y,X),write(Y),nl,fail.
 
 grand_pa(X,Y):-man(X),parent(Z,Y),parent(X,Z).
 grand_pas(X):-grand_pa(Y,X),write(Y),nl,fail.
+
+grand_da(X,Y):-woman(X),parent(Z,X),parent(Y,Z).
+grand_dats(X):-grand_da(Y,X),write(Y),nl,fail.
