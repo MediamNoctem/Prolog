@@ -29,5 +29,9 @@ sum_digits_down(N,Sum,S):-N1 is N mod 10, N2 is N div 10, Sum1 is N1+Sum, sum_di
 
 min(X,Y,X):-X<Y,!.
 min(_,Y,Y).
-min_digit_up(0,10):-!.
-min_digit_up(N,Min):-N1 is N div 10, min_digit_up(N1,Min2),Min1 is N mod 10, min(Min1,Min2,Min).
+min_digit_up(N,Min):- N1 is N div 10, N1 = 0, Min is N mod 10,!.
+min_digit_up(N,Min):- N1 is abs(N) div 10, min_digit_up(N1,Min2),Min1 is abs(N) mod 10, min(Min1,Min2,Min).
+
+min_digit_down(N1,Min):- N is abs(N1),M is N mod 10,min_digit_down(N,M,Min).
+min_digit_down(0,M,M):-!.
+min_digit_down(N,M,Min):- M1 is N mod 10, N1 is N div 10, min(M1,M,Min1),min_digit_down(N1,Min1,Min).
