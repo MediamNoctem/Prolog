@@ -35,3 +35,6 @@ min_digit_up(N,Min):- N1 is abs(N) div 10, min_digit_up(N1,Min2),Min1 is abs(N) 
 min_digit_down(N1,Min):- N is abs(N1),M is N mod 10,min_digit_down(N,M,Min).
 min_digit_down(0,M,M):-!.
 min_digit_down(N,M,Min):- M1 is N mod 10, N1 is N div 10, min(M1,M,Min1),min_digit_down(N1,Min1,Min).
+
+number_digit_up(0,0):-!.
+number_digit_up(N,Count):- N1 is abs(N) div 10, number_digit_up(N1,Count1), N2 is abs(N) mod 10, (N2<3 -> Count is Count1+1;Count is Count1).
