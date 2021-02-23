@@ -45,3 +45,7 @@ number_digit_down(N,C,Count):- N1 is N mod 10, (N1<3 -> C1 is C+1;C1 is C), N2 i
 
 nod(X,X,X):-!.
 nod(X,Y,Z):- (X < Y -> D is Y-X, nod(X,D,Z); D is X-Y, nod(D,Y,Z)).
+
+prime(X1):- X is abs(X1), prime(1,X).
+prime(X,X):-!.
+prime(I,X):- X1 is X mod I, (X1\=0 -> I1 is I+1, prime(I1,X);fail).
