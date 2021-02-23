@@ -49,3 +49,7 @@ nod(X,Y,Z):- (X < Y -> D is Y-X, nod(X,D,Z); D is X-Y, nod(D,Y,Z)).
 prime(X1):- X is abs(X1), prime(1,X).
 prime(X,X):-!.
 prime(I,X):- X1 is X mod I, (X1\=0 -> I1 is I+1, prime(I1,X);fail).
+
+number_div(X1,Count):- X is abs(X1), number_div(0,1,X,Count).
+number_div(I,X,X,I1):- I1 is I + 1,!.
+number_div(I,D,X,Count):- X1 is X mod D, D1 is D+1, (X1=0 -> I1 is I+1;I1 is I), number_div(I1,D1,X,Count).
