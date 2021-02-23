@@ -15,3 +15,7 @@ fact_down(N,X):-fact(0,1,N,X).
 fib(1,1):-!.
 fib(2,1):-!.
 fib(N,X):-N1 is N-1,fib(N1,X1),N2 is N-2,fib(N2,X2),X is X1+X2.
+
+fib(N,_,X,N,X):-!.
+fib(I,F1,F2,N,X):-I1 is I+1, F3 is F1+F2,fib(I1,F2,F3,N,X).
+fib_down(N,X):-N>0,fib(1,0,1,N,X).
