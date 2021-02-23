@@ -22,3 +22,7 @@ fib_down(N,X):-N>0,fib(1,0,1,N,X).
 
 sum_digits_up(0,0):-!.
 sum_digits_up(N,S):-N1 is N div 10, sum_digits_up(N1,S1), S is S1 + N mod 10.
+
+sum_digits_down(N,S):-sum_digits_down(N,0,S).
+sum_digits_down(0,S,S):-!.
+sum_digits_down(N,Sum,S):-N1 is N mod 10, N2 is N div 10, Sum1 is N1+Sum, sum_digits_down(N2,Sum1,S).
