@@ -69,3 +69,11 @@ sum_comp_div_up(Num,N,Sum):- N1 is N-1, sum_comp_div_up(Num,N1,Sum1), N2 is Num 
 sum_comp_div_down(N,Sum):- sum_comp_div_down(N,0,N,Sum).
 sum_comp_div_down(0,S,_,S):-!.
 sum_comp_div_down(N,S,Num,Sum):- N1 is Num mod N, (N1 = 0, not(prime(N)) -> S1 is S+N; S1 is S), N2 is N-1, sum_comp_div_down(N2,S1,Num,Sum).
+
+sum_prime_digit(N,Sum):- sum_prime_digit(N,0,Sum).
+sum_prime_digit(0,S,S):-!.
+sum_prime_digit(N,S,Sum):- N1 is N mod 10, (prime(N1) -> S1 is S+N1; S1 is S), N2 is N div 10, sum_prime_digit(N2,S1,Sum).
+
+pr3_15(N,Count):- sum_prime_digit(N,Sum), (Sum = 0 -> pr3_15(0,0,_,_,Count); pr3_15(N,0,N,Sum,Count)).
+pr3_15(0,C,_,_,C):-!.
+pr3_15(N,C,Num,Sum,Count):- N1 is Num mod N, nod(N,Num,Nod1), nod(N,Sum,Nod2), (N1\=0, Nod1\=1, Nod2=1 -> C1 is C+1; C1 is C), N2 is N-1, pr3_15(N2,C1,Num,Sum,Count).
