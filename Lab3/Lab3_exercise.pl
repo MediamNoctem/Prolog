@@ -46,9 +46,8 @@ number_digit_down(N,C,Count):- N1 is N mod 10, (N1<3 -> C1 is C+1;C1 is C), N2 i
 nod(X,X,X):-!.
 nod(X,Y,Z):- (X < Y -> D is Y-X, nod(X,D,Z); D is X-Y, nod(D,Y,Z)).
 
-prime(X1):- X is abs(X1), (X=1 -> prime(1,1); prime(2,X)).
-prime(X,X):-!.
-prime(I,X):- X1 is X mod I, (X1\=0 -> I1 is I+1, prime(I1,X);fail).
+prime(X1):- X is abs(X1), (X<3 -> true,!; T is floor(sqrt(X)), prime(2,T,X)).
+prime(I,T,X):- (I=<T -> Xd is X mod 2, (Xd\=0 -> X1 is X mod I, (X1\=0 -> I1 is I+1, prime(I1,T,X);fail); fail); true).
 
 number_div(X1,Count):- X is abs(X1), number_div(0,1,X,Count).
 number_div(I,X,X,I1):- I1 is I + 1,!.
@@ -77,3 +76,10 @@ sum_prime_digit(N,S,Sum):- N1 is N mod 10, (prime(N1) -> S1 is S+N1; S1 is S), N
 pr3_15(N,Count):- sum_prime_digit(N,Sum), (Sum = 0 -> pr3_15(0,0,_,_,Count); pr3_15(N,0,N,Sum,Count)).
 pr3_15(0,C,_,_,C):-!.
 pr3_15(N,C,Num,Sum,Count):- N1 is Num mod N, nod(N,Num,Nod1), nod(N,Sum,Nod2), (N1\=0, Nod1\=1, Nod2=1 -> C1 is C+1; C1 is C), N2 is N-1, pr3_15(N2,C1,Num,Sum,Count).
+
+find_prime(1,1):-!.
+find_prime(N,P):- N1 is N-1, (prime(N1) -> P is N1,!; find_prime(N1,P)).
+
+pr3_16(Num):- pr3_16(9,9,Num).
+pr3_16(N,1,N):-!.
+pr3_16(N,P,Num):- (Nm is N mod 2, Nm \= 0, not(prime(N)) -> find_prime(P,P1), N1 is sqrt((N-P1)/2), N2 is floor(N1), Nd is N2-N1, (Nd>=0 -> N3 is N+1, pr3_16(N3,N3,Num); pr3_16(N,P1,Num)); N4 is N+1, pr3_16(N4,N4,Num)).
