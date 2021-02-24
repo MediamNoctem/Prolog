@@ -53,3 +53,11 @@ prime(I,X):- X1 is X mod I, (X1\=0 -> I1 is I+1, prime(I1,X);fail).
 number_div(X1,Count):- X is abs(X1), number_div(0,1,X,Count).
 number_div(I,X,X,I1):- I1 is I + 1,!.
 number_div(I,D,X,Count):- X1 is X mod D, D1 is D+1, (X1=0 -> I1 is I+1;I1 is I), number_div(I1,D1,X,Count).
+
+collatz(N,Count):- N>0, collatz(N,0,Count).
+collatz(1,C1,C):- C is C1 + 1,!.
+collatz(N,C,Count):- C1 is C + 1, N1 is N mod 2, (N1=0 -> N2 is N div 2; N2 is 3*N+1),collatz(N2,C1,Count).
+
+collatz_max(Numb):- collatz_max(0,0,0,Numb).
+collatz_max(1000000,Num,_,Num):-!.
+collatz_max(N,Num,M,Numb):- N1 is N + 1, collatz(N1,M1), (M1>M -> N2 is N1, M2 is M1; N2 is Num, M2 is M), collatz_max(N1,N2,M2,Numb).
