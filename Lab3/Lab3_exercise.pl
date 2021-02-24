@@ -46,7 +46,7 @@ number_digit_down(N,C,Count):- N1 is N mod 10, (N1<3 -> C1 is C+1;C1 is C), N2 i
 nod(X,X,X):-!.
 nod(X,Y,Z):- (X < Y -> D is Y-X, nod(X,D,Z); D is X-Y, nod(D,Y,Z)).
 
-prime(X1):- X is abs(X1), prime(1,X).
+prime(X1):- X is abs(X1), (X=1 -> prime(1,1); prime(2,X)).
 prime(X,X):-!.
 prime(I,X):- X1 is X mod I, (X1\=0 -> I1 is I+1, prime(I1,X);fail).
 
@@ -61,3 +61,7 @@ collatz(N,C,Count):- C1 is C + 1, N1 is N mod 2, (N1=0 -> N2 is N div 2; N2 is 3
 collatz_max(Numb):- collatz_max(0,0,0,Numb).
 collatz_max(1000000,Num,_,Num):-!.
 collatz_max(N,Num,M,Numb):- N1 is N + 1, collatz(N1,M1), (M1>M -> N2 is N1, M2 is M1; N2 is Num, M2 is M), collatz_max(N1,N2,M2,Numb).
+
+sum_comp_div_up(N,Sum):- sum_comp_div_up(N,N,Sum).
+sum_comp_div_up(_,0,0):-!.
+sum_comp_div_up(Num,N,Sum):- N1 is N-1, sum_comp_div_up(Num,N1,Sum1), N2 is Num mod N, (N2 = 0, not(prime(N)) -> Sum is Sum1 + N; Sum is Sum1).
