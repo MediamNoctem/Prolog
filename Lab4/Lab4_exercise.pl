@@ -22,3 +22,7 @@ pr4_4:- write("Enter the number: "), read(N), write("Enter the list:"), nl,
 	write("Number = "), write(Number),!.
 pr4_4:- write("There is no such item in the list.").
 
+pr4_5:- write("Enter the number: "), read(N), write("Enter the list:"), nl,
+	read_list(N,List), write("Enter an item number: "), read(Number), list_el_numb(List,Elem,Number),
+	write("Elem = "), write(Elem),!.
+pr4_5:- write("The item number is uncorrect.").
