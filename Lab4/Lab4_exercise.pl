@@ -26,3 +26,9 @@ pr4_5:- write("Enter the number: "), read(N), write("Enter the list:"), nl,
 	read_list(N,List), write("Enter an item number: "), read(Number), list_el_numb(List,Elem,Number),
 	write("Elem = "), write(Elem),!.
 pr4_5:- write("The item number is uncorrect.").
+
+min(X,Y,X):-X<Y,!.
+min(_,Y,Y).
+
+min_list_up([Head],Head):-!.
+min_list_up([Head|Tail],Min):- min_list_up(Tail,Min1), min(Head,Min1,Min).
