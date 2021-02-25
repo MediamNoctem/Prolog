@@ -40,3 +40,6 @@ min_list_down([Head|Tail],M,Min):- min(Head,M,Min1), min_list_down(Tail,Min1,Min
 pr4_8:- write("Enter the number: "), read(N), write("Enter the list:"), nl,
 	read_list(N,List), min_list_down(List,Min), write("Min = "), write(Min).
 	
+in_list([El|_],El):-!.
+in_list([_|Tail],El):- in_list(Tail,El).
+
