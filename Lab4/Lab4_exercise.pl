@@ -13,3 +13,6 @@ pr4_2:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl,
 sum_list_up([],0):-!.
 sum_list_up([Head|Tail],Summ):- sum_list_up(Tail,S1), Summ is Head + S1.
 
+list_el_numb(List,Elem,Number):- list_el_numb(List,Elem,0,Number).
+list_el_numb([Head|_],Head,Number,Number):-!.
+list_el_numb([_|Tail],Elem,I,Number):- I1 is I+1, list_el_numb(Tail,Elem,I1,Number).
