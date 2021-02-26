@@ -68,3 +68,6 @@ p([Head1|Tail1],[Head2|Tail2],_):- (Head1 = Head2 -> p(Tail1,Tail2,1); p([Head1|
 delete_elem_num([_|Tail],0,Tail):- !.
 delete_elem_num([Head|Tail1],Num,[Head|Tail2]):- Num1 is Num-1, delete_elem_num(Tail1,Num1,Tail2).
 
+% 13
+delete_all(List,Elem,List_res):- (list_el_numb(List,Elem,Num) -> 
+	delete_elem_num(List,Num,List1), delete_all(List1,Elem,List_res); List_res = List).
