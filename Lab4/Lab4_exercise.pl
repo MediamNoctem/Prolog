@@ -53,7 +53,14 @@ in_list([El|_],El):-!.
 in_list([_|Tail],El):- in_list(Tail,El).
 
 % 10
+reverse_list([],List):- reverse_list([],[],List),!.
 reverse_list([Head|Tail],List):- reverse_list([Head|Tail],[],List).
 reverse_list([],List1,List1):-!.
 reverse_list([Head|Tail],List_r, List):- reverse_list(Tail,[Head|List_r],List).
+
+% 11
+p(Sublist,List):- p(Sublist,List,0).
+p([],_,1):-!.
+p(Sublist,[],0):- Sublist\=[], false, !.
+p([Head1|Tail1],[Head2|Tail2],_):- (Head1 = Head2 -> p(Tail1,Tail2,1); p([Head1|Tail1], Tail2,0)).
 
