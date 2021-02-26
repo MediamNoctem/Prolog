@@ -71,3 +71,7 @@ delete_elem_num([Head|Tail1],Num,[Head|Tail2]):- Num1 is Num-1, delete_elem_num(
 % 13
 delete_all(List,Elem,List_res):- (list_el_numb(List,Elem,Num) -> 
 	delete_elem_num(List,Num,List1), delete_all(List1,Elem,List_res); List_res = List).
+	
+% 14
+pr4_14([]):-!.
+pr4_14([Head|Tail]):- (in_list(Tail,Head) -> fail, !; pr4_14(Tail)).
