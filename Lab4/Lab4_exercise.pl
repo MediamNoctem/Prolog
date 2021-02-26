@@ -64,3 +64,7 @@ p([],_,1):-!.
 p(Sublist,[],0):- Sublist\=[], false, !.
 p([Head1|Tail1],[Head2|Tail2],_):- (Head1 = Head2 -> p(Tail1,Tail2,1); p([Head1|Tail1], Tail2,0)).
 
+% 12
+delete_elem_num([_|Tail],0,Tail):- !.
+delete_elem_num([Head|Tail1],Num,[Head|Tail2]):- Num1 is Num-1, delete_elem_num(Tail1,Num1,Tail2).
+
