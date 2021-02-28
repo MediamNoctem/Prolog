@@ -89,3 +89,6 @@ length_list(List,Count):- length_list(List,0,Count).
 length_list([],C,C):-!.
 length_list([_|Tail],C,Count):- C1 is C+1, length_list(Tail,C1,Count).
 
+% 18_11
+p11([Head|Tail],Elem):- list_num_count(Tail,Head,C), (C > 0 -> delete_all(Tail,Head,List1), p11(List1,Elem); Elem = Head, !).
+
