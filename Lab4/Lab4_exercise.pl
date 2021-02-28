@@ -80,3 +80,7 @@ pr4_14([Head|Tail]):- (in_list(Tail,Head) -> fail, !; pr4_14(Tail)).
 pr4_15([],[]).
 pr4_15([Head|Tail1],[Head|Tail2]):- delete_all(Tail1,Head,List1), pr4_15(List1,Tail2).
 
+% 16
+list_num_count([],_,0):-!.
+list_num_count([Head|Tail],Num,Count):- list_num_count(Tail,Num,C1),(Head = Num -> Count is C1+1; Count is C1).
+
