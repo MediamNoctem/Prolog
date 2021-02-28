@@ -92,3 +92,32 @@ length_list([_|Tail],C,Count):- C1 is C+1, length_list(Tail,C1,Count).
 % 18_11
 p11([Head|Tail],Elem):- list_num_count(Tail,Head,C), (C > 0 -> delete_all(Tail,Head,List1), p11(List1,Elem); Elem = Head, !).
 
+% 18_12
+max(X,Y,X):-X>Y,!.
+max(_,Y,Y).
+
+max_list([Head|Tail],Max):- max_list(Tail,Head,Max).
+max_list([],M,M):-!.
+max_list([Head|Tail],M,Max):- max(Head,M,Max1), max_list(Tail,Max1,Max).
+
+append_list([],List2,List2).
+append_list([H|T1],List2,[H|T2]):- append_list(T1,List2,T2).
+
+cut_sublist(_,_,0,[]):-!.
+cut_sublist([H|T1],P1,P2,[H|T2]):- P1<0, P2>0, P_1 is P1-1, P_2 is P2-1, cut_sublist(T1,P_1,P_2,T2),!.
+cut_sublist([_|T1],P1,P2,List):- P_1 is P1-1, P_2 is P2-1, cut_sublist(T1,P_1,P_2,List),!.
+
+p12(List1,List2):- min_list_down(List1,Min),max_list(List1,Max), p12(List1,Min,Max,[],List2).
+
+p12(List1,Min,Max,List_res,List2):- (list_el_numb(List1,Min,P1) ->
+	P2 is P1+1, cut_sublist(List1,-1,P2,List_res_1), length_list(List1,P3),
+	cut_sublist(List1,P1,P3,Sublist1),
+	(list_el_numb(Sublist1,Max,P4) -> 
+	cut_sublist(Sublist1,-1,P4,Sublist2), reverse_list(Sublist2,List_rev), 
+	append_list(List_res,List_res_1,List_res1),
+	append_list(List_res1,List_rev,List_res3), append_list(List_res3,[Max],List_res2),
+	P5 is P4+P1+1,
+	cut_sublist(List1,P5,P3,List_1), p12(List_1,Min,Max,List_res2,List2);
+	append_list(List_res_1,Sublist1,List2));
+	append_list(List_res,List1,List2)).
+
