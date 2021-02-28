@@ -84,3 +84,8 @@ pr4_15([Head|Tail1],[Head|Tail2]):- delete_all(Tail1,Head,List1), pr4_15(List1,T
 list_num_count([],_,0):-!.
 list_num_count([Head|Tail],Num,Count):- list_num_count(Tail,Num,C1),(Head = Num -> Count is C1+1; Count is C1).
 
+% 17
+length_list(List,Count):- length_list(List,0,Count).
+length_list([],C,C):-!.
+length_list([_|Tail],C,Count):- C1 is C+1, length_list(Tail,C1,Count).
+
