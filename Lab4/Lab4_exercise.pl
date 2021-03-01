@@ -129,3 +129,9 @@ p24([Head|Tail],Max1,_,M1,M2,0):- (Head =< Max1 -> p24(Tail,Max1,Head,M1,M2,1);
 p24([Head|Tail],Max1,Max2,M1,M2,1):- (Head > Max2, Head =< Max1 -> p24(Tail,Max1,Head,M1,M2,1);
 	(Head > Max1 -> p24(Tail,Head,Max1,M1,M2,1); p24(Tail,Max1,Max2,M1,M2,1))).
 
+% 18_33
+p33([Head|Tail]):- (Head > 0 -> T = 1; (Head < 0 -> T = 0; fail)), p33(Tail,T).
+p33([],_):-!.
+p33([Head|Tail],0):- Head > 0, p33(Tail,1),!.
+p33([Head|Tail],1):- Head < 0, p33(Tail,0),!.
+
