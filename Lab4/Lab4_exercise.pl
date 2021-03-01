@@ -135,3 +135,8 @@ p33([],_):-!.
 p33([Head|Tail],0):- Head > 0, p33(Tail,1),!.
 p33([Head|Tail],1):- Head < 0, p33(Tail,0),!.
 
+% 18_36
+p36([Head|Tail], Odd_max):- (0 is Head mod 2 -> p36(Tail,Odd_max); p36(Tail,Head,Odd_max)).
+p36([],M,M):-!.
+p36([Head|Tail],M,Odd_max):- Mm is Head mod 2, (Head > M, Mm\=0 -> p36(Tail,Head,Odd_max); p36(Tail,M,Odd_max)).
+
