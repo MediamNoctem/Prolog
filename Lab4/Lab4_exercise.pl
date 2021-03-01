@@ -140,3 +140,11 @@ p36([Head|Tail], Odd_max):- (0 is Head mod 2 -> p36(Tail,Odd_max); p36(Tail,Head
 p36([],M,M):-!.
 p36([Head|Tail],M,Odd_max):- Mm is Head mod 2, (Head > M, Mm\=0 -> p36(Tail,Head,Odd_max); p36(Tail,M,Odd_max)).
 
+% 18_42
+sr_arifm(List,Sr):- sum_list_down(List,Sum), length_list(List,Count), Sr is Sum/Count.
+
+p42(List1,List2):- sr_arifm(List1,Sr), p42(List1,Sr,List2).
+p42([],_,[]):-!.
+p42([Head|Tail1],Sr,[Head|Tail2]):- Head < Sr, p42(Tail1,Sr,Tail2),!.
+p42([_|Tail1],Sr,List2):- p42(Tail1,Sr,List2),!.
+
