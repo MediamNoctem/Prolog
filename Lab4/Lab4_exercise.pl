@@ -121,3 +121,11 @@ p12(List1,Min,Max,List_res,List2):- (list_el_numb(List1,Min,P1) ->
 	append_list(List_res_1,Sublist1,List2));
 	append_list(List_res,List1,List2)).
 
+% 18_24
+p24([Head|Tail],Max1,Max2):- p24(Tail,Head,_,Max1,Max2,0), !.
+p24([],Max1,Max2,Max1,Max2,_):- !.
+p24([Head|Tail],Max1,_,M1,M2,0):- (Head =< Max1 -> p24(Tail,Max1,Head,M1,M2,1); 
+	p24(Tail,Head,Max1,M1,M2,1)).
+p24([Head|Tail],Max1,Max2,M1,M2,1):- (Head > Max2, Head =< Max1 -> p24(Tail,Max1,Head,M1,M2,1);
+	(Head > Max1 -> p24(Tail,Head,Max1,M1,M2,1); p24(Tail,Max1,Max2,M1,M2,1))).
+
