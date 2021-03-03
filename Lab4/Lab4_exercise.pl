@@ -121,6 +121,15 @@ p12(List1,Min,Max,List_res,List2):- (list_el_numb(List1,Min,P1) ->
 	append_list(List_res_1,Sublist1,List2));
 	append_list(List_res,List1,List2)).
 
+% 18_22	
+min_ab([H|T], A, B, Min):- (H>A, H<B -> min_ab(T, A, B, H, Min); min_ab(T, A, B, Min)),!.
+min_ab([],_, _, M, M):-!.
+min_ab([H|T],A, B, M, Min):- (H>A, H<B -> min(H, M, M1), min_ab(T, A, B, M1, Min); min_ab(T, A, B, M, Min)),!.
+
+p22(List,A,B,Count):- min_ab(List,A,B,Min), p22_1(List,Min,0,Count),!.
+p22_1([],_,C,C):-!.
+p22_1([H|T],Min,C,Count):- (H = Min -> C1 is C+1; C1 is C), p22_1(T,Min,C1,Count),!.
+
 % 18_24
 p24([Head|Tail],Max1,Max2):- p24(Tail,Head,_,Max1,Max2,0), !.
 p24([],Max1,Max2,Max1,Max2,_):- !.
