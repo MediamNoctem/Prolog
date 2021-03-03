@@ -157,3 +157,15 @@ p42([],_,[]):-!.
 p42([Head|Tail1],Sr,[Head|Tail2]):- Head < Sr, p42(Tail1,Sr,Tail2),!.
 p42([_|Tail1],Sr,List2):- p42(Tail1,Sr,List2),!.
 
+% 18_48
+num_count_max([Head|Tail],Elem):- list_num_count([Head|Tail],Head,P),
+	num_count_max([Head|Tail],Head,P,Elem).
+num_count_max([],N,_,N):-!.
+num_count_max([Head|Tail],N,P,Elem):- list_num_count([Head|Tail],Head,P1),
+	(P1 > P -> num_count_max(Tail,Head,P1,Elem); num_count_max(Tail,N,P,Elem)).
+	
+p48(List1,List2):- num_count_max(List1,Elem), p48(List1,0,Elem,List2).
+p48([],_,_,[]):-!.
+p48([Head|Tail1],I,Elem,[I|Tail2]):- Head = Elem, I1 is I+1, p48(Tail1,I1,Elem,Tail2),!.
+p48([_|Tail1],I,Elem,List2):- I1 is I+1, p48(Tail1,I1,Elem,List2),!.
+
