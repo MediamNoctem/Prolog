@@ -90,9 +90,15 @@ length_list([],C,C):-!.
 length_list([_|Tail],C,Count):- C1 is C+1, length_list(Tail,C1,Count).
 
 % 18_11
+p11:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p11(List,Elem), write("Elem = "), write(Elem).
+
 p11([Head|Tail],Elem):- list_num_count(Tail,Head,C), (C > 0 -> delete_all(Tail,Head,List1), p11(List1,Elem); Elem = Head, !).
 
 % 18_12
+p12:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p12(List,List1), nl, write("List:"), nl, write_list(List1).
+
 max(X,Y,X):-X>Y,!.
 max(_,Y,Y).
 
@@ -121,7 +127,11 @@ p12(List1,Min,Max,List_res,List2):- (list_el_numb(List1,Min,P1) ->
 	append_list(List_res_1,Sublist1,List2));
 	append_list(List_res,List1,List2)).
 
-% 18_22	
+% 18_22
+p22:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), write("Enter A:"), nl, read(A), write("Enter B:"), nl, 
+	read(B), p22(List,A,B,Count), write("Count = "), write(Count).
+	
 min_ab([H|T], A, B, Min):- (H>A, H<B -> min_ab(T, A, B, H, Min); min_ab(T, A, B, Min)),!.
 min_ab([],_, _, M, M):-!.
 min_ab([H|T],A, B, M, Min):- (H>A, H<B -> min(H, M, M1), min_ab(T, A, B, M1, Min); min_ab(T, A, B, M, Min)),!.
@@ -131,6 +141,10 @@ p22_1([],_,C,C):-!.
 p22_1([H|T],Min,C,Count):- (H = Min -> C1 is C+1; C1 is C), p22_1(T,Min,C1,Count),!.
 
 % 18_24
+p24:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p24(List,Max1,Max2), write("Max1 = "), write(Max1), nl,
+	write("Max2 = "), write(Max2).
+
 p24([Head|Tail],Max1,Max2):- p24(Tail,Head,_,Max1,Max2,0), !.
 p24([],Max1,Max2,Max1,Max2,_):- !.
 p24([Head|Tail],Max1,_,M1,M2,0):- (Head =< Max1 -> p24(Tail,Max1,Head,M1,M2,1); 
@@ -139,17 +153,26 @@ p24([Head|Tail],Max1,Max2,M1,M2,1):- (Head > Max2, Head =< Max1 -> p24(Tail,Max1
 	(Head > Max1 -> p24(Tail,Head,Max1,M1,M2,1); p24(Tail,Max1,Max2,M1,M2,1))).
 
 % 18_33
+p33:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p33(List).
+
 p33([Head|Tail]):- (Head > 0 -> T = 1; (Head < 0 -> T = 0; fail)), p33(Tail,T).
 p33([],_):-!.
 p33([Head|Tail],0):- Head > 0, p33(Tail,1),!.
 p33([Head|Tail],1):- Head < 0, p33(Tail,0),!.
 
 % 18_36
+p36:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p36(List,Odd_max), nl, write("Odd_max = "), write(Odd_max).
+
 p36([Head|Tail], Odd_max):- (0 is Head mod 2 -> p36(Tail,Odd_max); p36(Tail,Head,Odd_max)).
 p36([],M,M):-!.
 p36([Head|Tail],M,Odd_max):- Mm is Head mod 2, (Head > M, Mm\=0 -> p36(Tail,Head,Odd_max); p36(Tail,M,Odd_max)).
 
 % 18_42
+p42:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p42(List,List1), nl, write("List:"), nl, write_list(List1).
+
 sr_arifm(List,Sr):- sum_list_down(List,Sum), length_list(List,Count), Sr is Sum/Count.
 
 p42(List1,List2):- sr_arifm(List1,Sr), p42(List1,Sr,List2).
@@ -158,6 +181,9 @@ p42([Head|Tail1],Sr,[Head|Tail2]):- Head < Sr, p42(Tail1,Sr,Tail2),!.
 p42([_|Tail1],Sr,List2):- p42(Tail1,Sr,List2),!.
 
 % 18_48
+p48:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p48(List,List1), nl, write("List:"), nl, write_list(List1).
+
 num_count_max([Head|Tail],Elem):- list_num_count([Head|Tail],Head,P),
 	num_count_max([Head|Tail],Head,P,Elem).
 num_count_max([],N,_,N):-!.
@@ -169,3 +195,11 @@ p48([],_,_,[]):-!.
 p48([Head|Tail1],I,Elem,[I|Tail2]):- Head = Elem, I1 is I+1, p48(Tail1,I1,Elem,Tail2),!.
 p48([_|Tail1],I,Elem,List2):- I1 is I+1, p48(Tail1,I1,Elem,List2),!.
 
+% 18_60
+p60:- write("Enter the number:"), nl, read(N), write("Enter the list:"), nl, 
+	read_list(N,List), p60(List,List1), nl, write("List:"), nl, write_list(List1).
+p60(List1,List2):- p60(List1,List1,List2).
+p60(_,[],[]):-!.
+p60(List1,[H|T1],[H|T2]):- list_num_count(List1,H,P), P=1, list_el_numb(List1,H,N), 
+	N \= 0, 0 is H mod N, p60(List1,T1,T2),!.
+p60(List1,[_|T],List3):- p60(List1,T,List3).
