@@ -1,238 +1,238 @@
-race(manwe,1).
-race(ulmo,1).
-race(aule,1).
-race(orome,1).
-race(melkor,1).
-race(sauron,2).
-race(luthien,3).
-race(beren,4).
-race(thingol,3).
-race(melian,2).
-race(huan,7).
-race(carcharoth,7).
-race(finwe,3).
-race(feanor,3).
-race(fingolfin,3).
-race(maedhros,3).
-race(ungoliant,2).
-race(earendil,3).
-race(ancalagon,6).
-race(isildur,4).
-race(durin,5).
-race(glaurung,6).
-race(uldor,4).
-race(azaghal,5).
-race(turin,4).
+answer(1,manwe,1).
+answer(1,ulmo,1).
+answer(1,aule,1).
+answer(1,orome,1).
+answer(1,melkor,1).
+answer(1,sauron,2).
+answer(1,luthien,3).
+answer(1,beren,4).
+answer(1,thingol,3).
+answer(1,melian,2).
+answer(1,huan,7).
+answer(1,carcharoth,7).
+answer(1,finwe,3).
+answer(1,feanor,3).
+answer(1,fingolfin,3).
+answer(1,maedhros,3).
+answer(1,ungoliant,2).
+answer(1,earendil,3).
+answer(1,ancalagon,6).
+answer(1,isildur,4).
+answer(1,durin,5).
+answer(1,glaurung,6).
+answer(1,uldor,4).
+answer(1,azaghal,5).
+answer(1,turin,4).
 
-difference(manwe,1).
-difference(ulmo,2).
-difference(aule,3).
-difference(orome,4).
-difference(melkor,15).
-difference(sauron,15).
-difference(luthien,15).
-difference(beren,15).
-difference(thingol,15).
-difference(melian,15).
-difference(huan,15).
-difference(carcharoth,15).
-difference(finwe,15).
-difference(feanor,15).
-difference(fingolfin,15).
-difference(maedhros,15).
-difference(ungoliant,15).
-difference(earendil,15).
-difference(ancalagon,15).
-difference(isildur,15).
-difference(durin,15).
-difference(glaurung,15).
-difference(uldor,15).
-difference(azaghal,15).
-difference(turin,15).
+answer(2,manwe,1).
+answer(2,ulmo,2).
+answer(2,aule,3).
+answer(2,orome,4).
+answer(2,melkor,15).
+answer(2,sauron,15).
+answer(2,luthien,15).
+answer(2,beren,15).
+answer(2,thingol,15).
+answer(2,melian,15).
+answer(2,huan,15).
+answer(2,carcharoth,15).
+answer(2,finwe,15).
+answer(2,feanor,15).
+answer(2,fingolfin,15).
+answer(2,maedhros,15).
+answer(2,ungoliant,15).
+answer(2,earendil,15).
+answer(2,ancalagon,15).
+answer(2,isildur,15).
+answer(2,durin,15).
+answer(2,glaurung,15).
+answer(2,uldor,15).
+answer(2,azaghal,15).
+answer(2,turin,15).
 
-dark_lord(manwe,2).
-dark_lord(ulmo,2).
-dark_lord(aule,2).
-dark_lord(orome,2).
-dark_lord(melkor,1).
-dark_lord(sauron,1).
-dark_lord(luthien,2).
-dark_lord(beren,2).
-dark_lord(thingol,2).
-dark_lord(melian,2).
-dark_lord(huan,2).
-dark_lord(carcharoth,2).
-dark_lord(finwe,2).
-dark_lord(feanor,2).
-dark_lord(fingolfin,2).
-dark_lord(maedhros,2).
-dark_lord(ungoliant,2).
-dark_lord(earendil,2).
-dark_lord(ancalagon,2).
-dark_lord(isildur,2).
-dark_lord(durin,2).
-dark_lord(glaurung,2).
-dark_lord(uldor,2).
-dark_lord(azaghal,2).
-dark_lord(turin,2).
+answer(3,manwe,2).
+answer(3,ulmo,2).
+answer(3,aule,2).
+answer(3,orome,2).
+answer(3,melkor,1).
+answer(3,sauron,1).
+answer(3,luthien,2).
+answer(3,beren,2).
+answer(3,thingol,2).
+answer(3,melian,2).
+answer(3,huan,2).
+answer(3,carcharoth,2).
+answer(3,finwe,2).
+answer(3,feanor,2).
+answer(3,fingolfin,2).
+answer(3,maedhros,2).
+answer(3,ungoliant,2).
+answer(3,earendil,2).
+answer(3,ancalagon,2).
+answer(3,isildur,2).
+answer(3,durin,2).
+answer(3,glaurung,2).
+answer(3,uldor,2).
+answer(3,azaghal,2).
+answer(3,turin,2).
 
-theft_silmarils(manwe,2).
-theft_silmarils(ulmo,2).
-theft_silmarils(aule,2).
-theft_silmarils(orome,2).
-theft_silmarils(melkor,2).
-theft_silmarils(sauron,2).
-theft_silmarils(luthien,1).
-theft_silmarils(beren,1).
-theft_silmarils(thingol,1).
-theft_silmarils(melian,1).
-theft_silmarils(huan,1).
-theft_silmarils(carcharoth,2).
-theft_silmarils(finwe,2).
-theft_silmarils(feanor,2).
-theft_silmarils(fingolfin,2).
-theft_silmarils(maedhros,2).
-theft_silmarils(ungoliant,2).
-theft_silmarils(earendil,2).
-theft_silmarils(ancalagon,2).
-theft_silmarils(isildur,2).
-theft_silmarils(durin,2).
-theft_silmarils(glaurung,2).
-theft_silmarils(uldor,2).
-theft_silmarils(azaghal,2).
-theft_silmarils(turin,2).
+answer(4,manwe,2).
+answer(4,ulmo,2).
+answer(4,aule,2).
+answer(4,orome,2).
+answer(4,melkor,2).
+answer(4,sauron,2).
+answer(4,luthien,1).
+answer(4,beren,1).
+answer(4,thingol,1).
+answer(4,melian,1).
+answer(4,huan,1).
+answer(4,carcharoth,2).
+answer(4,finwe,2).
+answer(4,feanor,2).
+answer(4,fingolfin,2).
+answer(4,maedhros,2).
+answer(4,ungoliant,2).
+answer(4,earendil,2).
+answer(4,ancalagon,2).
+answer(4,isildur,2).
+answer(4,durin,2).
+answer(4,glaurung,2).
+answer(4,uldor,2).
+answer(4,azaghal,2).
+answer(4,turin,2).
 
-battle(manwe,2).
-battle(ulmo,2).
-battle(aule,2).
-battle(orome,2).
-battle(melkor,1).
-battle(sauron,1).
-battle(luthien,2).
-battle(beren,2).
-battle(thingol,2).
-battle(melian,2).
-battle(huan,2).
-battle(carcharoth,2).
-battle(finwe,2).
-battle(feanor,2).
-battle(fingolfin,2).
-battle(maedhros,1).
-battle(ungoliant,2).
-battle(earendil,2).
-battle(ancalagon,2).
-battle(isildur,2).
-battle(durin,2).
-battle(glaurung,1).
-battle(uldor,1).
-battle(azaghal,1).
-battle(turin,2).
+answer(5,manwe,2).
+answer(5,ulmo,2).
+answer(5,aule,2).
+answer(5,orome,2).
+answer(5,melkor,1).
+answer(5,sauron,1).
+answer(5,luthien,2).
+answer(5,beren,2).
+answer(5,thingol,2).
+answer(5,melian,2).
+answer(5,huan,2).
+answer(5,carcharoth,2).
+answer(5,finwe,2).
+answer(5,feanor,2).
+answer(5,fingolfin,2).
+answer(5,maedhros,1).
+answer(5,ungoliant,2).
+answer(5,earendil,2).
+answer(5,ancalagon,2).
+answer(5,isildur,2).
+answer(5,durin,2).
+answer(5,glaurung,1).
+answer(5,uldor,1).
+answer(5,azaghal,1).
+answer(5,turin,2).
 
-murder(manwe,2).
-murder(ulmo,2).
-murder(aule,2).
-murder(orome,2).
-murder(melkor,2).
-murder(sauron,2).
-murder(luthien,2).
-murder(beren,2).
-murder(thingol,2).
-murder(melian,2).
-murder(huan,2).
-murder(carcharoth,2).
-murder(finwe,1).
-murder(feanor,2).
-murder(fingolfin,1).
-murder(maedhros,2).
-murder(ungoliant,2).
-murder(earendil,2).
-murder(ancalagon,2).
-murder(isildur,2).
-murder(durin,2).
-murder(glaurung,2).
-murder(uldor,2).
-murder(azaghal,2).
-murder(turin,2).
+answer(6,manwe,2).
+answer(6,ulmo,2).
+answer(6,aule,2).
+answer(6,orome,2).
+answer(6,melkor,2).
+answer(6,sauron,2).
+answer(6,luthien,2).
+answer(6,beren,2).
+answer(6,thingol,2).
+answer(6,melian,2).
+answer(6,huan,2).
+answer(6,carcharoth,2).
+answer(6,finwe,1).
+answer(6,feanor,2).
+answer(6,fingolfin,1).
+answer(6,maedhros,2).
+answer(6,ungoliant,2).
+answer(6,earendil,2).
+answer(6,ancalagon,2).
+answer(6,isildur,2).
+answer(6,durin,2).
+answer(6,glaurung,2).
+answer(6,uldor,2).
+answer(6,azaghal,2).
+answer(6,turin,2).
 
-war(manwe,1).
-war(ulmo,1).
-war(aule,1).
-war(orome,1).
-war(melkor,1).
-war(sauron,1).
-war(luthien,2).
-war(beren,2).
-war(thingol,2).
-war(melian,2).
-war(huan,2).
-war(carcharoth,2).
-war(finwe,1).
-war(feanor,2).
-war(fingolfin,1).
-war(maedhros,2).
-war(ungoliant,2).
-war(earendil,1).
-war(ancalagon,1).
-war(isildur,2).
-war(durin,2).
-war(glaurung,2).
-war(uldor,2).
-war(azaghal,2).
-war(turin,1).
+answer(7,manwe,1).
+answer(7,ulmo,1).
+answer(7,aule,1).
+answer(7,orome,1).
+answer(7,melkor,1).
+answer(7,sauron,1).
+answer(7,luthien,2).
+answer(7,beren,2).
+answer(7,thingol,2).
+answer(7,melian,2).
+answer(7,huan,2).
+answer(7,carcharoth,2).
+answer(7,finwe,1).
+answer(7,feanor,2).
+answer(7,fingolfin,1).
+answer(7,maedhros,2).
+answer(7,ungoliant,2).
+answer(7,earendil,1).
+answer(7,ancalagon,1).
+answer(7,isildur,2).
+answer(7,durin,2).
+answer(7,glaurung,2).
+answer(7,uldor,2).
+answer(7,azaghal,2).
+answer(7,turin,1).
 
-mother(manwe,3).
-mother(ulmo,3).
-mother(aule,3).
-mother(orome,3).
-mother(melkor,3).
-mother(sauron,3).
-mother(luthien,3).
-mother(beren,3).
-mother(thingol,3).
-mother(melian,3).
-mother(huan,3).
-mother(carcharoth,3).
-mother(finwe,3).
-mother(feanor,1).
-mother(fingolfin,2).
-mother(maedhros,3).
-mother(ungoliant,3).
-mother(earendil,3).
-mother(ancalagon,3).
-mother(isildur,3).
-mother(durin,3).
-mother(glaurung,3).
-mother(uldor,3).
-mother(azaghal,3).
-mother(turin,3).
+answer(8,manwe,3).
+answer(8,ulmo,3).
+answer(8,aule,3).
+answer(8,orome,3).
+answer(8,melkor,3).
+answer(8,sauron,3).
+answer(8,luthien,3).
+answer(8,beren,3).
+answer(8,thingol,3).
+answer(8,melian,3).
+answer(8,huan,3).
+answer(8,carcharoth,3).
+answer(8,finwe,3).
+answer(8,feanor,1).
+answer(8,fingolfin,2).
+answer(8,maedhros,3).
+answer(8,ungoliant,3).
+answer(8,earendil,3).
+answer(8,ancalagon,3).
+answer(8,isildur,3).
+answer(8,durin,3).
+answer(8,glaurung,3).
+answer(8,uldor,3).
+answer(8,azaghal,3).
+answer(8,turin,3).
 
-royal(manwe,3).
-royal(ulmo,3).
-royal(aule,3).
-royal(orome,3).
-royal(melkor,3).
-royal(sauron,3).
-royal(luthien,1).
-royal(beren,3).
-royal(thingol,2).
-royal(melian,1).
-royal(huan,3).
-royal(carcharoth,3).
-royal(finwe,2).
-royal(feanor,2).
-royal(fingolfin,2).
-royal(maedhros,2).
-royal(ungoliant,3).
-royal(earendil,3).
-royal(ancalagon,3).
-royal(isildur,3).
-royal(durin,3).
-royal(glaurung,3).
-royal(uldor,3).
-royal(azaghal,3).
-royal(turin,3).
+answer(9,manwe,3).
+answer(9,ulmo,3).
+answer(9,aule,3).
+answer(9,orome,3).
+answer(9,melkor,3).
+answer(9,sauron,3).
+answer(9,luthien,1).
+answer(9,beren,3).
+answer(9,thingol,2).
+answer(9,melian,1).
+answer(9,huan,3).
+answer(9,carcharoth,3).
+answer(9,finwe,2).
+answer(9,feanor,2).
+answer(9,fingolfin,2).
+answer(9,maedhros,2).
+answer(9,ungoliant,3).
+answer(9,earendil,3).
+answer(9,ancalagon,3).
+answer(9,isildur,3).
+answer(9,durin,3).
+answer(9,glaurung,3).
+answer(9,uldor,3).
+answer(9,azaghal,3).
+answer(9,turin,3).
 
-question1(X1):- write("What is the race of this character?"),nl,
+question(1,X1):- write("What is the race of this character?"),nl,
 		write("1. Ainur"),nl,
 		write("2. Maiar"),nl,
 		write("3. Quendi"),nl,
@@ -242,7 +242,7 @@ question1(X1):- write("What is the race of this character?"),nl,
 		write("7. Other race"),nl,
 		read(X1).
 		
-question2(X2):- write("How is the character different?"),nl,
+question(2,X2):- write("How is the character different?"),nl,
 		write("1. Is the Master of the sky, wind, air and clouds"),nl,
 		write("2. Is the Master of all Waters"),nl,
 		write("3. Is the Master of the terra firma, mountains and metal"),nl,
@@ -260,45 +260,57 @@ question2(X2):- write("How is the character different?"),nl,
 		write("15. Other feature"),nl,
 		read(X2).
 
-question3(X3):- write("Was the character a Dark Lord?"),nl,
+question(3,X3):- write("Was the character a Dark Lord?"),nl,
 		write("1. Yes"),nl,
 		write("2. No"),nl,
 		read(X3).
 
-question4(X4):- write("Was the character involved in the theft of one of the Silmarils from the crown of Morgoth?"),nl,
+question(4,X4):- write("Was the character involved in the theft of one of the Silmarils from the crown of Morgoth?"),nl,
 		write("1. Yes"),nl,
 		write("2. No"),nl,
 		read(X4).
 		
-question5(X5):- write("Did the character participate in the Battle of Unnumbered Tears?"),nl,
+question(5,X5):- write("Did the character participate in the Battle of Unnumbered Tears?"),nl,
 		write("1. Yes"),nl,
 		write("2. No"),nl,
 		read(X5).
 		
-question6(X6):- write("Did Morgoth kill the character?"),nl,
+question(6,X6):- write("Did Morgoth kill the character?"),nl,
 		write("1. Yes"),nl,
 		write("2. No"),nl,
 		read(X6).
 		
-question7(X7):- write("Did the character participate in the War of Wrath?"),nl,
+question(7,X7):- write("Did the character participate in the War of Wrath?"),nl,
 		write("1. Yes"),nl,
 		write("2. No"),nl,
 		read(X7).
 		
-question8(X8):- write("Who is the character’s mother?"),nl,
+question(8,X8):- write("Who is the character’s mother?"),nl,
 		write("1. Miriel"),nl,
 		write("2. Indis"),nl,
 		write("3. Other variant"),nl,
 		read(X8).
 
-question9(X9):- write("Is the character a member of the Elven royal family?"),nl,
+question(9,X9):- write("Is the character a member of the Elven royal family?"),nl,
 		write("1. Yes, she is a princess/queen"),nl,
 		write("2. Yes, he is prince/king"),nl,
 		write("3. No"),nl,
 		read(X9).
 		
-pr:- question1(X1),question2(X2),question3(X3),question4(X4),question5(X5),
-	question6(X6),question7(X7),question8(X8),question9(X9),
-	race(X,X1),difference(X,X2),dark_lord(X,X3),theft_silmarils(X,X4),
-	battle(X,X5),murder(X,X6),war(X,X7),mother(X,X8),royal(X,X9),
+pr2:- question(1,X1),question(2,X2),question(3,X3),question(4,X4),question(5,X5),
+	question(6,X6),question(7,X7),question(8,X8),question(9,X9),
+	answer(1,X,X1),answer(2,X,X2),answer(3,X,X3),answer(4,X,X4),
+	answer(5,X,X5),answer(6,X,X6),answer(7,X,X7),answer(8,X,X8),answer(9,X,X9),
 	write(X).
+	
+% 3
+pr3:- Characters = [manwe,ulmo,aule,orome,melkor,sauron,luthien,beren,thingol,melian,huan,carcharoth,finwe,feanor,fingolfin,maedhros,ungoliant,earendil,ancalagon,isildur,durin,glaurung,uldor,azaghal,turin],
+	pr3(1,Characters).
+pr3(Num_question,Characters):- question(Num_question,X), choose(Num_question,X,Characters,[H|T]), (one([H|T]) -> write(H); Num_question1 is Num_question+1, pr3(Num_question1,[H|T])).
+
+choose(_,_,[],[]):-!.
+choose(Num_question,X,[H|T1],[H|T2]):- answer(Num_question,H,X), choose(Num_question,X,T1,T2),!.
+choose(Num_question,X,[_|T1],List):- choose(Num_question,X,T1,List).
+
+one([_|T]):- T = [].
+
