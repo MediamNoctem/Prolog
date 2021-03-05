@@ -100,4 +100,52 @@ pr5_4:- Friends=[_,_,_],
 		write(Who1), write(" is slesar"), nl,
 		write(Who2), write(" is tokar"), nl,
 		write(Who3), write(" is svarshik"), !.
-    
+
+% 5
+pr5_5:- Containers=[_,_,_,_],
+		
+		in_list(Containers,[bottle,_]),
+		in_list(Containers,[cup,_]),
+		in_list(Containers,[pitcher,_]),
+		in_list(Containers,[jar,_]),
+		
+		in_list(Containers,[_,milk]),
+		in_list(Containers,[_,lemonade]),
+		in_list(Containers,[_,kvass]),
+		in_list(Containers,[_,water]),
+		
+		not(in_list(Containers,[bottle,milk])),
+		not(in_list(Containers,[bottle,water])),
+		not(in_list(Containers,[pitcher,lemonade])),
+		not(in_list(Containers,[pitcher,kvass])),
+		not(in_list(Containers,[jar,lemonade])),
+		not(in_list(Containers,[jar,water])),
+		not(in_list(Containers,[cup,milk])),
+		
+		write_list(Containers),!.
+
+% 6
+pr5_6:- Man=[_,_,_,_],
+
+		in_list(Man,[voronov,_]),
+		in_list(Man,[pavlov,_]),
+		in_list(Man,[levitsky,_]),
+		in_list(Man,[sakharov,_]),
+		in_list(Man,[_,dancer]),
+		in_list(Man,[_,artist]),
+		in_list(Man,[_,singer]),
+		in_list(Man,[_,writer]),
+		
+		not(in_list(Man,[voronov,singer])),
+		not(in_list(Man,[levitsky,singer])),
+		not(in_list(Man,[pavlov,artist])),
+		not(in_list(Man,[pavlov,writer])),
+		not(in_list(Man,[voronov,writer])),
+		not(in_list(Man,[sakharov,writer])),
+		not(in_list(Man,[voronov,artist])),
+		write_list(Man),!.
+
+
+
+
+
