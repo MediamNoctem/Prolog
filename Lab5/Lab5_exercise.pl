@@ -163,5 +163,45 @@ pr5_7:- Sport=[_,_,_],
 		write(Who1), write(" is australian"), nl,
 		write("richard loves "), write(Who2),!.
 
+% 8
+check(El,[El|[H|T]],H):-!.
+check(El,[_|List],N):- check(El,List,N),!.
 
+pr5_8:- Gnomes=[_,_,_,_,_],
+		in_list(Gnomes,[_,_,_,_,80]),
+		in_list(Gnomes,[_,_,_,_,131]),
+		in_list(Gnomes,[_,_,_,_,159]),
+		in_list(Gnomes,[_,_,_,_,176]),
+		in_list(Gnomes,[_,_,_,_,202]),
+		in_list(Gnomes,[_,_,sapphire,_,X1]),
+		check(X1,[80,131,159,176,202],X2),
+		in_list(Gnomes,[_,kylo,_,_,X2]),
 
+		in_list(Gnomes,[dryhli,_,_,1,_]),
+		in_list(Gnomes,[_,_,_,X3,131]),
+		in_list(Gnomes,[_,_,diamond,X4,_]),
+		
+		%X4 is X3+1; X3 is X4-1,
+		in_list(Gnomes,[_,spade,_,_,_]),
+		in_list(Gnomes,[_,turbobur,_,_,X5]),
+		check(X5,[80,131,159,176,202],X6),
+		in_list(Gnomes,[bryckly,_,_,0,X6]),
+		check(X6,[80,131,159,176,202],X7),
+		
+		in_list(Gnomes,[_,_,emerald,_,X7]),
+		in_list(Gnomes,[feegley,_,_,4,X8]),
+		X7>X8, X8>80,
+		not(in_list(Gnomes,[zvyckly,_,sapphire,_,_])),
+		in_list(Gnomes,[zvyckly,_,_,2,X9]),
+		check(X9,[80,131,159,176,202],X10),
+		in_list(Gnomes,[_,_,agate,_,X10]),
+
+		in_list(Gnomes,[_,pickaxe,_,_,X11]),
+		check(X11,[80,131,159,176,202],X12),
+		in_list(Gnomes,[quakley,_,_,3,X12]),
+		check(X12,[80,131,159,176,202],X13),
+		in_list(Gnomes,[_,jackhammer,diamond,_,X13]),
+		in_list(Gnomes,[_,_,ruby,_,_]),
+		X4 is X3+1,
+		
+		write_list(Gnomes).
