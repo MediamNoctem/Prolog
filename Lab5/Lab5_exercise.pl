@@ -41,16 +41,9 @@ pr_ein:- Houses=[_,_,_,_,_],
 		in_list(Houses,[_,WHO1,water,_,_]),
 		in_list(Houses,[_,WHO2,_,zebra,_]),
 		write_list(Houses),
-		write(WHO1),nl,write(WHO2),!.
+		write(WHO1),nl,write(WHO2).
 
-  
 % 2
-man(belokurov).
-man(ryzhov).
-man(chernov).
-
-friend(last_name,hair_color).
-
 pr5_2:- Friends=[_,_,_],
 		
 		in_list(Friends,[belokurov,_]),
@@ -68,9 +61,23 @@ pr5_2:- Friends=[_,_,_],
 		
 		write_list(Friends),!.
 
+% 3
+pr5_3:- Friends=[_,_,_],
 
-
-
+		in_list(Friends,[anna,_,_]),
+		in_list(Friends,[valya,_,_]),
+		in_list(Friends,[natasha,_,green]),
+		in_list(Friends,[_,white,_]),
+		in_list(Friends,[_,green,_]),
+		in_list(Friends,[_,blue,_]),
+		in_list(Friends,[_,_,white]),
+		in_list(Friends,[_,_,blue]),
+		in_list(Friends,[anna,Color,Color]),
+		not(in_list(Friends,[valya,_,white])),
+		not(in_list(Friends,[valya,white,_])),
+		not(in_list(Friends,[valya,white,white])),
+		
+		write_list(Friends),!.
 
 
 
