@@ -145,7 +145,23 @@ pr5_6:- Man=[_,_,_,_],
 		not(in_list(Man,[voronov,artist])),
 		write_list(Man),!.
 
-
+% 7
+pr5_7:- Sport=[_,_,_],
+		
+		in_list(Sport,[michael,_,basketball,X1]),
+		in_list(Sport,[_,american,_,X2]),
+		in_list(Sport,[_,_,_,0]),
+		in_list(Sport,[_,_,_,1]),
+		in_list(Sport,[_,_,cricket,2]),
+		in_list(Sport,[simon,israeli,_,X3]),
+		in_list(Sport,[richard,_,Who2,_]),
+		in_list(Sport,[Who1,australian,_,_]),
+		in_list(Sport,[_,_,tennis,X4]),
+		X1>X2,
+		X3>X4,
+		
+		write(Who1), write(" is australian"), nl,
+		write("richard loves "), write(Who2),!.
 
 
 
