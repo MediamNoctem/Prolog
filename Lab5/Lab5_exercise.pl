@@ -79,9 +79,25 @@ pr5_3:- Friends=[_,_,_],
 		
 		write_list(Friends),!.
 
+% 4
 
+pr5_4:- Friends=[_,_,_],
+		
+		in_list(Friends,[ivanov,_,_,_]),
+		in_list(Friends,[semenov,_,_,X2]),
+		in_list(Friends,[borisov,_,1,_]),
+		in_list(Friends,[_,slesar,0,0]),
+		in_list(Friends,[_,tokar,_,X3]),
+		in_list(Friends,[_,svarshik,_,_]),
+		in_list(Friends,[_,_,_,1]),
+		in_list(Friends,[_,_,_,2]),
+		not(in_list(Friends,[semenov,tokar,_,_])),
+		X2>X3,
+		in_list(Friends,[Who1,slesar,_,_]),
+		in_list(Friends,[Who2,tokar,_,_]),
+		in_list(Friends,[Who3,svarshik,_,_]),
 
-
-
-
+		write(Who1), write(" is slesar"), nl,
+		write(Who2), write(" is tokar"), nl,
+		write(Who3), write(" is svarshik"), !.
     
