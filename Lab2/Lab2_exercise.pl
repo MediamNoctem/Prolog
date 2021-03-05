@@ -232,6 +232,32 @@ answer(9,uldor,3).
 answer(9,azaghal,3).
 answer(9,turin,3).
 
+answer(10,manwe,3).
+answer(10,ulmo,3).
+answer(10,aule,3).
+answer(10,orome,3).
+answer(10,melkor,3).
+answer(10,sauron,3).
+answer(10,luthien,3).
+answer(10,beren,1).
+answer(10,thingol,3).
+answer(10,melian,3).
+answer(10,huan,3).
+answer(10,carcharoth,3).
+answer(10,finwe,3).
+answer(10,feanor,3).
+answer(10,fingolfin,3).
+answer(10,maedhros,3).
+answer(10,ungoliant,3).
+answer(10,earendil,3).
+answer(10,ancalagon,3).
+answer(10,isildur,3).
+answer(10,durin,3).
+answer(10,glaurung,3).
+answer(10,uldor,2).
+answer(10,azaghal,3).
+answer(10,turin,3).
+
 question(1,X1):- write("What is the race of this character?"),nl,
 		write("1. Ainur"),nl,
 		write("2. Maiar"),nl,
@@ -297,6 +323,12 @@ question(9,X9):- write("Is the character a member of the Elven royal family?"),n
 		write("3. No"),nl,
 		read(X9).
 		
+question(10,X10):- write("Who is the character's father?"),nl,
+		write("1. Barahir"),nl,
+		write("2. Ulfang"),nl,
+		write("3. Other variant"),nl,
+		read(X10).
+		
 pr2:- question(1,X1),question(2,X2),question(3,X3),question(4,X4),question(5,X5),
 	question(6,X6),question(7,X7),question(8,X8),question(9,X9),
 	answer(1,X,X1),answer(2,X,X2),answer(3,X,X3),answer(4,X,X4),
@@ -314,3 +346,27 @@ choose(Num_question,X,[_|T1],List):- choose(Num_question,X,T1,List).
 
 one([_|T]):- T = [].
 
+% 4
+next_question(1,1,2).
+next_question(1,2,3).
+next_question(1,3,4).
+next_question(1,4,10).
+next_question(1,5,5).
+next_question(1,6,5).
+next_question(1,7,4).
+
+next_question(3,2,4).
+
+next_question(4,1,9).
+next_question(4,2,5).
+
+next_question(5,2,6).
+
+next_question(6,1,8).
+next_question(6,2,7).
+
+next_question(10,3,7).
+
+pr4:- Characters = [manwe,ulmo,aule,orome,melkor,sauron,luthien,beren,thingol,melian,huan,carcharoth,finwe,feanor,fingolfin,maedhros,ungoliant,earendil,ancalagon,isildur,durin,glaurung,uldor,azaghal,turin],
+	pr4(1,Characters).
+pr4(Num_question,Characters):- question(Num_question,X), choose(Num_question,X,Characters,[H|T]), (one([H|T]) -> write(H); next_question(Num_question,X,Num_question1), pr4(Num_question1,[H|T])).
