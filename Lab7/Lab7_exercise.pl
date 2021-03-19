@@ -18,10 +18,11 @@ count_words([32,H2|T],I,K):- H2\=32, H2\=10, I1 is I+1, count_words(T,I1,K).
 count_words([_|T],I,K):- count_words(T,I,K),!.
 
 % 3
+p3:- read_str(List,_), freq_word(List,Freq_word), write("Word = "),
+	write_str(Freq_word).
+
 in_list([El|_],El):-!.
 in_list([_|T],El):-in_list(T,El).
-
-%p3:- read_str(List,_),
 
 % Извлекаем слово из списка. В начале не должно быть пробела.
 % get_word(+List, Word).
@@ -61,9 +62,16 @@ freq_word(Source_list,Changing_list,Current_word,Num,Freq_word):-
 	(I > Num -> freq_word(Source_list,Changed_list,Cur,I,Freq_word);
 	freq_word(Source_list,Changed_list,Current_word,Num,Freq_word)).
 	
+% 4
+p4:- read_str([H|T],L), (L>5 -> p4_1([H|T],0,L); p4_2(H,L)).
+
+p4_1([],_,_):-!.
+p4_1([H|T],I,L):- I<3, write_str([H]), I1 is I+1, p4_1(T,I1,L),!.
+p4_1([H|T],I,L):- M is L-I, M<4, write_str([H]), I1 is I+1, p4_1(T,I1,L),!.
+p4_1([_|T],I,L):- I1 is I+1, p4_1(T,I1,L).
 	
-	
-	
+p4_2(_,0):-!.
+p4_2(H,L):- write_str([H]), L1 is L-1, p4_2(H,L1).
 	
 	
 	
