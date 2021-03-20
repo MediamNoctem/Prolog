@@ -89,9 +89,12 @@ p5([],[],_,_,_):-!.
 p5([H1|T1],[H2|T2],H1,I,L):- H2 is L-I-1, I1 is I+1, p5(T1,T2,H1,I1,L),!.
 p5([_|T1],List,H,I,L):- I1 is I+1, p5(T1,List,H,I1,L).
 
+% 6
+p6:- read_str(List,_), p6(List,0,List1), write_str(List1).
 
-
-
+p6([],_,[]):-!.
+p6([H|T1],I,[H|T2]):- 0 is I mod 3, I\=0, I1 is I+1, p6(T1,I1,T2),!.
+p6([_|T1],I,List):- I1 is I+1, p6(T1,I1,List).
 
 
 
