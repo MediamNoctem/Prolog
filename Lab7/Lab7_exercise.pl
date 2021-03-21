@@ -128,4 +128,22 @@ p8([H1,H2|_],H1,[]):- H2\=H1,!.
 p8([C,H|_],H,C):-!.
 p8([_|T],H,C):- p8(T,H,C).
 
+% 9
+p9:- write("Enter the first string."), nl, read_str(List1,L1), 
+	write("Enter the second string."), nl, read_str(List2,L2), 
+	(L1>L2 -> M is L1-L2, p9(List1,M); M is L2-L1, p9(List2,M)).
+
+p9(_,0):-!.
+p9(List,M):- write_str(List), nl, M1 is M-1, p9(List,M1).
+
+
+
+
+
+
+
+
+
+
+
 
