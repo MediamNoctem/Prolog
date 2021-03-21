@@ -97,7 +97,7 @@ p6([H|T1],I,[H|T2]):- 0 is I mod 3, I\=0, I1 is I+1, p6(T1,I1,T2),!.
 p6([_|T1],I,List):- I1 is I+1, p6(T1,I1,List).
 
 % 7
-p7:- read_str(List,_),p7(List,0,0,I,C), write("I = "), write(I), write(","), nl, 
+p7:- read_str(List,_), p7(List,0,0,I,C), write("I = "), write(I), write(","), nl, 
 	write("C = "), write(C), write(".").
 
 p7([],I,C,I,C):-!.
@@ -106,5 +106,26 @@ p7([H1,H2|T],I,C,I0,C0):- (H1 = 43; H1 = 45), I1 is I+1,
 p7([H|T],I,C,I0,C0):- (H = 43; H = 45), I1 is I+1, p7(T,I1,C,I0,C0),!.
 p7([_|T],I,C,I0,C0):- p7(T,I,C,I0,C0).
 
+% 8
+p8:- read_str(List,_), 
+	(in_list(List,119) -> 
+		(in_list(List,120) -> p8(List,119,C1), 
+			(C1\=[] -> write_str([C1]), write(" occurs before w."); 
+			write("w is at beginning of the string.")), 
+		nl, p8(List,120,C2), 
+			(C2\=[] -> write_str([C2]), write(" occurs before x."); 
+			write("x is at beginning of the string.")); 
+		write("x not found."), nl, p8(List,119,C1), 
+			(C1\=[] -> write_str([C1]), write(" occurs before w."); 
+			write("w is at beginning of the string.")));
+	write("w not found."), nl,
+		(in_list(List,120) -> p8(List,120,C1), 
+			(C1\=[] -> write_str([C1]), write(" occurs before x."); 
+			write("x is at beginning of the string.")); 
+		write("x not found."))).
+
+p8([H1,H2|_],H1,[]):- H2\=H1,!.
+p8([C,H|_],H,C):-!.
+p8([_|T],H,C):- p8(T,H,C).
 
 
