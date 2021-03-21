@@ -143,9 +143,11 @@ p10:- read_str(List,_),
 	
 p10([97,98,99|T],[119,119,119|T]):-!.
 
+% 11
+p11:- read_str(List,L), (L>10 -> p11_1(List,List1), write_str(List1);
+	p11_2(List,List2,L), write_str(List2)).
 
-
-
-
-
+p11_1([H1,H2,H3,H4,H5,H6|_],[H1,H2,H3,H4,H5,H6]):-!.
+p11_2(List,List,12):-!.
+p11_2(List,List_1,L):- L1 is L+1, append_list(List,[111],List1), p11_2(List1,List_1,L1).
 
