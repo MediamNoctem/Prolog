@@ -159,3 +159,11 @@ p13([97|T1],[99|T2],I):- 0 is I mod 2, I1 is I+1, p13(T1,T2,I1),!.
 p13([98|T1],[99|T2],I):- 0 is I mod 2, I1 is I+1, p13(T1,T2,I1),!.
 p13([_|T1],[97|T2],I):- 0 is I mod 2, I1 is I+1, p13(T1,T2,I1),!.
 p13([H|T1],[H|T2],I):- I1 is I+1, p13(T1,T2,I1).
+
+% 14
+p14:- read_str(List,_), count_digits(List,0,K), write("The number of digit = "), write(K).
+
+count_digits([],C,C):-!.
+count_digits([H|T],C,K):- H>=48, H=<57, C1 is C+1, count_digits(T,C1,K),!.
+count_digits([_|T],C,K):- count_digits(T,C,K).
+
