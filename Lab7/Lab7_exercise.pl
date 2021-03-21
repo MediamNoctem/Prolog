@@ -96,12 +96,15 @@ p6([],_,[]):-!.
 p6([H|T1],I,[H|T2]):- 0 is I mod 3, I\=0, I1 is I+1, p6(T1,I1,T2),!.
 p6([_|T1],I,List):- I1 is I+1, p6(T1,I1,List).
 
+% 7
+p7:- read_str(List,_),p7(List,0,0,I,C), write("I = "), write(I), write(","), nl, 
+	write("C = "), write(C), write(".").
 
-
-
-
-
-
+p7([],I,C,I,C):-!.
+p7([H1,H2|T],I,C,I0,C0):- (H1 = 43; H1 = 45), I1 is I+1,
+	(H2 = 48 -> C1 is C+1, p7(T,I1,C1,I0,C0); p7([H2|T],I1,C,I0,C0)),!.
+p7([H|T],I,C,I0,C0):- (H = 43; H = 45), I1 is I+1, p7(T,I1,C,I0,C0),!.
+p7([_|T],I,C,I0,C0):- p7(T,I,C,I0,C0).
 
 
 
