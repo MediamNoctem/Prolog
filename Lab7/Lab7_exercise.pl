@@ -136,10 +136,12 @@ p9:- write("Enter the first string."), nl, read_str(List1,L1),
 p9(_,0):-!.
 p9(List,M):- write_str(List), nl, M1 is M-1, p9(List,M1).
 
-
-
-
-
+% 10
+p10:- read_str(List,_), 
+	(p10(List,L1) -> write_str(L1); 
+	append_list(List,[122,122,122],L2), write_str(L2)).
+	
+p10([97,98,99|T],[119,119,119|T]):-!.
 
 
 
