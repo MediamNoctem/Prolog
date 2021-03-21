@@ -151,3 +151,11 @@ p11_1([H1,H2,H3,H4,H5,H6|_],[H1,H2,H3,H4,H5,H6]):-!.
 p11_2(List,List,12):-!.
 p11_2(List,List_1,L):- L1 is L+1, append_list(List,[111],List1), p11_2(List1,List_1,L1).
 
+% 13
+p13:- read_str(List,_), p13(List,List1,0), write_str(List1).
+
+p13([],[],_):-!.
+p13([97|T1],[99|T2],I):- 0 is I mod 2, I1 is I+1, p13(T1,T2,I1),!.
+p13([98|T1],[99|T2],I):- 0 is I mod 2, I1 is I+1, p13(T1,T2,I1),!.
+p13([_|T1],[97|T2],I):- 0 is I mod 2, I1 is I+1, p13(T1,T2,I1),!.
+p13([H|T1],[H|T2],I):- I1 is I+1, p13(T1,T2,I1).
