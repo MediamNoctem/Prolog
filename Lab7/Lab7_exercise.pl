@@ -167,3 +167,11 @@ count_digits([],C,C):-!.
 count_digits([H|T],C,K):- H>=48, H=<57, C1 is C+1, count_digits(T,C1,K),!.
 count_digits([_|T],C,K):- count_digits(T,C,K).
 
+% 15
+p15:- read_str(List,_), (p15(List,0) -> true; false).
+
+p15([],1):-!.
+p15([97|T],_):- p15(T,1).
+p15([98|T],_):- p15(T,1).
+p15([99|T],_):- p15(T,1).
+
