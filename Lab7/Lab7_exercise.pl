@@ -202,3 +202,12 @@ p19:- read_str(List,_), p19(List,0,C), write("Number = "), write(C).
 p19([],I,I):-!.
 p19([97,98,97|T],I,C):- I1 is I+1, p19(T,I1,C),!.
 p19([_|T],I,C):- p19(T,I,C).
+
+% 20
+p20:- read_str(List,_), delete_space(List,L1), p20(L1,L), write_str(L).
+
+p20([],[]):-!.
+p20([32,32|T],List):- p20([32|T],List),!.
+p20([32,H|T1],[32,H|T2]):- p20(T1,T2),!.
+p20([32],List):- p20([],List),!.
+p20([H|T1],[H|T2]):- p20(T1,T2).
