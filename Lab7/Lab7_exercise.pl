@@ -211,3 +211,14 @@ p20([32,32|T],List):- p20([32|T],List),!.
 p20([32,H|T1],[32,H|T2]):- p20(T1,T2),!.
 p20([32],List):- p20([],List),!.
 p20([H|T1],[H|T2]):- p20(T1,T2).
+
+% 21
+p21_1:- write("Enter the first string."), nl, read_str(List1,_), 
+	write("Enter the second string."), nl, read_str(List2,_),
+	p21_1(List1,List2,List), delete_space(List,L1), p20(L1,L), write_str(L).
+
+p21_1([],_,[]):-!.
+p21_1([H|T1],List2,[32|T2]):- in_list(List2,H), p21_1(T1,List2,T2),!.
+p21_1([H|T1],List2,[H|T2]):- p21_1(T1,List2,T2).
+
+
