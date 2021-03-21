@@ -221,4 +221,10 @@ p21_1([],_,[]):-!.
 p21_1([H|T1],List2,[32|T2]):- in_list(List2,H), p21_1(T1,List2,T2),!.
 p21_1([H|T1],List2,[H|T2]):- p21_1(T1,List2,T2).
 
+p21_2:- read_str(List,L), p21_2(List,1,L).
 
+p21_2([],_,_):-!.
+p21_2([H|T],1,L):- write_str([H]), nl, p21_2(T,2,L),!.
+p21_2([H|T],I,L):- L is (I-1)*2+1, write_str([H]), nl, I1 is I+1, p21_2(T,I1,L),!.
+p21_2([H],_,_):- write_str([H]),!.
+p21_2([_|T],I,L):- I1 is I+1, p21_2(T,I1,L).
