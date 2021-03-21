@@ -151,6 +151,24 @@ p11_1([H1,H2,H3,H4,H5,H6|_],[H1,H2,H3,H4,H5,H6]):-!.
 p11_2(List,List,12):-!.
 p11_2(List,List_1,L):- L1 is L+1, append_list(List,[111],List1), p11_2(List1,List_1,L1).
 
+% 12
+p12:- read_str(List,L), M is L mod 3, M1 is L-M, piece(List,L1,M1),
+	(M > 0 -> piece_end(List,L1,List1), sort(List1,List2); sort(L1,List2)),
+	p12(List2).
+
+piece(_,[],0):-!.
+piece([H1,H2,H3],[[H1,H_2,H3]|T2],M):- rand(H1,H2,H3,H_2), M1 is M-3, piece([],T2,M1),!.
+piece([H1,H2,H3|T1],[[H1,H_2,H3]|T2],M):- rand(H1,H2,H3,H_2), M1 is M-3, piece(T1,T2,M1),!.
+
+piece_end([H1,H2,H3],List,L):- rand(H1,H2,H3,H_2), append_list(List,[[H1,H_2,H3]],L),!.
+piece_end([_|T],List,L):- piece_end(T,List,L).
+
+rand(H1,H2,H3,R):- random_between(32,126,R), R\=H1, R\=H2, R\=H3,!.
+rand(H1,H2,H3,R):- rand(H1,H2,H3,R).
+
+p12([]):-!.
+p12([H|T]):- write_str(H), nl, p12(T),!.
+
 % 13
 p13:- read_str(List,_), p13(List,List1,0), write_str(List1).
 
