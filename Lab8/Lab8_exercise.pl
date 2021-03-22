@@ -120,3 +120,32 @@ freq_word(Source_list,Changing_list,Current_word,Num,Freq_word):-
 	delete_fword(Changing_list, List), delete_space(List,Changed_list),
 	(I > Num -> freq_word(Source_list,Changed_list,Cur,I,Freq_word);
 	freq_word(Source_list,Changed_list,Current_word,Num,Freq_word)).
+	
+% 1_5
+p1_5:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_list_str1(List), seen,
+	unique_words(List,List,[],R), see('c:/Users/Anastasia/Desktop/p1_in.txt'),
+	read_list_str2(_,R,ResList), seen, tell('c:/Users/Anastasia/Desktop/p1_out.txt'), 
+	write_list_str(ResList),told.
+	
+write_list_str([]):-!.
+write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
+
+read_list_str2(_,UniqList,ResList):- read_str(A,_,Flag), append(A,[32],L),
+	(check_unique(L,UniqList) -> read_list_str2([A],UniqList,ResList,Flag); 
+	read_list_str2([],UniqList,ResList,Flag)).
+	
+read_list_str2(List,_,List,1):-!.
+read_list_str2(Cur_list,UniqList,List,0):- read_str(A,_,Flag), append(A,[32],L),
+	(check_unique(L,UniqList) -> append(Cur_list,[A],C_l); append(Cur_list,[],C_l)),
+	read_list_str2(C_l,UniqList,List,Flag).
+
+% Выделяем из списка List все слова, встречающиеся ровно 1 раз.
+unique_words(_,[],L,L):-!.
+unique_words(List,CurList,L,R):- delete_space(CurList,List1), get_word(List1, Word),
+	delete_fword(List1,L2), num_word(List,Word,0,Number), 
+	(Number = 1 -> append(L,[Word],L1); L1 = L), unique_words(List,L2,L1,R).
+	
+% Проверка: состоит ли строка только из уникальных слов.
+check_unique([],_):-!.
+check_unique(List,UniqList):- delete_space(List,List1), get_word(List1,Word),
+	in_list(UniqList,Word), delete_fword(List1,L), check_unique(L,UniqList).
