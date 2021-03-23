@@ -238,7 +238,7 @@ year([H1,H2,H3,H4]):- H1 >= 49, H1 =< 57, H2 >= 48, H2 =< 57, H3 >= 48, H3 =< 57
 write1([]):-!.
 write1([H|T]):- write_str(H), nl, write1(T).
 
-% 4
+% 4_6
 p4_6:- read_str(A,_), append(A,[32],B), count_5(B,0,C), write("C = "), write(C).
 
 count_5([],I,I):-!.
@@ -254,3 +254,17 @@ check_number([H|T]):- H >= 48, H =< 57, check_number(T).
 
 check_5([H]):- H > 53,!.
 check_5([_|T]):- T \= [], !.
+
+% 4_12
+p4_12:- read_str(A,_), cyrillic_char(A,[],B), p4_12(1025,B).
+
+cyrillic_char([],List,List):-!.
+cyrillic_char([H|T],List,Res):- (H >= 1040, H =< 1103; H = 1105; H = 1025), 
+	not(in_list(List,H)), append(List,[H],L), cyrillic_char(T,L,Res),!.
+cyrillic_char([_|T],List,Res):- cyrillic_char(T,List,Res).
+
+p4_12(1106,_):-!.
+p4_12(I,List):- (I >= 1040, I =< 1103; I = 1105; I = 1025), not(in_list(List,I)), 
+	write_str([I]), I1 is I+1, write(" "), p4_12(I1,List),!.
+p4_12(I,List):- I1 is I+1, p4_12(I1,List).
+
