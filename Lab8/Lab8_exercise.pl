@@ -268,3 +268,25 @@ p4_12(I,List):- (I >= 1040, I =< 1103; I = 1105; I = 1025), not(in_list(List,I))
 	write_str([I]), I1 is I+1, write(" "), p4_12(I1,List),!.
 p4_12(I,List):- I1 is I+1, p4_12(I1,List).
 
+% 5
+p5:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_list_str(List,LengthList), seen,
+	sort_list(List,LengthList,[],SList), write1(SList).
+
+% Сортировка списка строк по числовому критерию по возрастанию.
+% sort_list(+List,+RuleList,Sorted_list).
+
+sort_list([],_,S,S):-!.
+sort_list(L,R,S,Res):- min_list_down(R,Min), list_el_numb(R,Min,Num), 
+	list_el_numb(L,Elem,Num), append(S,[Elem],S1), delete_elem_num(R,Num,R1),
+	delete_elem_num(L,Num,L1), sort_list(L1,R1,S1,Res).
+
+min(X,Y,X):-X<Y,!.
+min(_,Y,Y).
+
+min_list_down([Head|Tail],Min):- min_list_down(Tail,Head,Min).
+min_list_down([],M,M):-!.
+min_list_down([Head|Tail],M,Min):- min(Head,M,Min1), min_list_down(Tail,Min1,Min).
+
+delete_elem_num([_|Tail],0,Tail):- !.
+delete_elem_num([Head|Tail1],Num,[Head|Tail2]):- 
+	Num1 is Num-1, delete_elem_num(Tail1,Num1,Tail2).
