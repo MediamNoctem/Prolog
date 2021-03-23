@@ -17,7 +17,7 @@ p2:- read_str(List,_), append([32], List, List1), count_words(List1,0,K),
 	(K\=0 -> write("Number of words = "), write(K); write("Empty!")),!.
 
 count_words([],K,K):-!.
-count_words([32,H2|T],I,K):- H2\=32, H2\=10, I1 is I+1, count_words(T,I1,K).
+count_words([32,H2|T],I,K):- H2\=32, H2\=10, I1 is I+1, count_words(T,I1,K),!.
 count_words([_|T],I,K):- count_words(T,I,K),!.
 
 % 3
@@ -30,6 +30,7 @@ in_list([_|T],El):-in_list(T,El).
 % Извлекаем слово из списка. В начале не должно быть пробела.
 % get_word(+List, Word).
 
+get_word([],[]):- !.
 get_word([32|_],[]):- !.
 get_word([H|T1],[H|T2]):- H\=32, get_word(T1,T2),!.
 
