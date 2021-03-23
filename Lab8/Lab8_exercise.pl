@@ -335,6 +335,76 @@ is_word([]):-!.
 is_word([H|T]):- (H >= 65, H =< 90; H >= 97, H =< 122; H >= 1040, H =< 1103; H = 1025; H = 1105),
 	is_word(T),!.
 
+% 8_3
 
+p8_3:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_list_str(List), seen,
+	rus_alph(Rus_alph), freq_symbol_in_alph(Freq_symbol_in_alph),
+	see('c:/Users/Anastasia/Desktop/p1_in.txt'), 
+	read_str_freq(_,Diff,Rus_alph,Freq_symbol_in_alph), seen,
+	sort_list(List,Diff,[],SList), write1(SList).
 
+lower_str([],[]):-!.
+lower_str([H|T1],[L|T2]):- to_lower(H,L), lower_str(T1,T2),!.
 
+read_str_freq(List,Diff,Rus_alph,Freq_symbol_in_alph):- read_str(B,_,Flag), 
+	% Понижаем регистр строки
+	lower_str(B,A),
+	% Составляем алфавит строки
+	cyrillic_char(A,[],Alph),
+	% Считаем количество букв в строке
+	count_cyrillic(A,0,All_cyr),
+	% Находим частоту появления символа для каждой буквы алфавита строки
+	frequency_symbol(A,Alph,Freq_symb_str,All_cyr),
+	% Ищем символ с максимальной частотой появления в строке
+	max_list(Freq_symb_str,Max), list_el_numb(Freq_symb_str,Max,Num),
+	list_el_numb(Alph,Elem,Num),	
+	% Ищем разницу частот
+	list_el_numb(Rus_alph,Elem,N), list_el_numb(Freq_symbol_in_alph,F,N),
+	D is Max-F, read_str_freq([A],List,[D],Diff,Rus_alph,Freq_symbol_in_alph,Flag).
+	
+read_str_freq(List,List,Diff,Diff,_,_,1):-!.
+
+read_str_freq(Cur_list,List,CurDiff,Diff,Rus_alph,Freq_symbol_in_alph,0):-
+	read_str(A,_,Flag), append(Cur_list,[A],C_l), 
+	% Составляем алфавит строки
+	cyrillic_char(A,[],Alph),
+	% Считаем количество букв в строке
+	count_cyrillic(A,0,All_cyr),
+	% Находим частоту появления символа для каждой буквы алфавита строки
+	frequency_symbol(A,Alph,Freq_symb_str,All_cyr),
+	% Ищем символ с максимальной частотой появления в строке
+	max_list(Freq_symb_str,Max), list_el_numb(Freq_symb_str,Max,Num),
+	list_el_numb(Alph,Elem,Num),	
+	% Ищем разницу частот
+	list_el_numb(Rus_alph,Elem,N), list_el_numb(Freq_symbol_in_alph,F,N),
+	D is Max-F, append(CurDiff, [D], NewDiff),
+	read_str_freq(C_l,List,NewDiff,Diff,Rus_alph,Freq_symbol_in_alph,Flag).
+
+% Список частот появления символов русского алфавита
+freq_symbol_in_alph([0.10983,0.08483,0.07998,0.07367,0.067,0.06318,0.05473,0.04746,0.04533,0.04343,0.03486,0.03203,0.02977,0.02804,0.02615,0.02001,0.01898,0.01735,0.01687,0.01641,0.01592,0.0145,0.01208,0.00966,0.0094,0.00718,0.00639,0.00486,0.00361,0.00331,0.00267,0.00037,0.00013]).
+
+% Русский алфавит в соответствии с порядком расстановки частот
+rus_alph([1086,1077,1072,1080,1085,1090,1089,1088,1074,1083,1082,1084,1076,1087,1091,1103,1099,1100,1075,1079,1073,1095,1081,1093,1078,1096,1102,1094,1097,1101,1092,1098,1105]).
+
+% Составляем список частоты символа списка в строке.
+frequency_symbol(_,[],[],_):-!.
+frequency_symbol(List,[H|T1],[F|T2],Count_cyrillic):- count_symbol(List,H,0,I),
+	F = I/Count_cyrillic,frequency_symbol(List,T1,T2,Count_cyrillic), !.
+
+% Считаем, сколько в списке символов кириллицы.
+count_cyrillic([],I,I):-!.
+count_cyrillic([H|T],I,C):- (H >= 1040, H =< 1103; H = 1105; H = 1025), 
+	I1 is I+1, count_cyrillic(T,I1,C), !.
+count_cyrillic([_|T],I,C):- count_cyrillic(T,I,C).
+
+% Считаем, сколько раз встречается данный символ в списке.
+count_symbol([],_,I,I):-!.
+count_symbol([H|T],H,I,R):- I1 is I+1, count_symbol(T,H,I1,R),!.
+count_symbol([_|T],S,I,R):- count_symbol(T,S,I,R).
+
+max1(X,Y,X):-X>Y,!.
+max1(_,Y,Y).
+
+max_list([Head|Tail],Max):- max_list(Tail,Head,Max).
+max_list([],M,M):-!.
+max_list([Head|Tail],M,Max):- max1(Head,M,Max1), max_list(Tail,Max1,Max).
