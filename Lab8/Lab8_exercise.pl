@@ -106,7 +106,7 @@ delete_space([32|T],List):- delete_space(T,List),!.
 delete_space(List,List).
 
 % Удаление первого слова. В начале не должно быть пробела.
-% В конце списка должен быть пробел.
+delete_fword([],[]):-!.
 delete_fword([H|T1],List):- H\=32, delete_fword(T1,List),!.
 delete_fword([32|T],T):-!.
 
@@ -196,8 +196,7 @@ letters([H|T1],[H|T2]):- H >= 1040, H =< 1103, letters(T1,T2),!.
 letters([_|T],List):- letters(T,List).
 
 % 3
-p3:- see('c:/Users/Anastasia/Desktop/p1_in.txt'),
-read_str(A,_,_), seen, append(A,[32],B), p3(B,[],Res), write1(Res).
+p3:- read_str(A,_), append(A,[32],B), p3(B,[],Res), write1(Res).
 
 p3([],CurRes,CurRes):-!.
 p3(List,CurRes,Res):- 
@@ -238,3 +237,20 @@ year([H1,H2,H3,H4]):- H1 >= 49, H1 =< 57, H2 >= 48, H2 =< 57, H3 >= 48, H3 =< 57
 	
 write1([]):-!.
 write1([H|T]):- write_str(H), nl, write1(T).
+
+% 4
+p4_6:- read_str(A,_), append(A,[32],B), count_5(B,0,C), write("C = "), write(C).
+
+count_5([],I,I):-!.
+count_5(List,I,C):- delete_space(List,List1), get_word(List1,W), 
+	delete_fword(List1,List2), 
+	(is_number(W) -> (check_5(W) -> I1 is I+1; I1 is I), count_5(List2,I1,C);
+	count_5(List2,I,C)).
+
+is_number([H|T]):- H >= 49, H =< 57, check_number(T).
+
+check_number([]):-!.
+check_number([H|T]):- H >= 48, H =< 57, check_number(T).
+
+check_5([H]):- H > 53,!.
+check_5([_|T]):- T \= [], !.
