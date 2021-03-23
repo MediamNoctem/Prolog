@@ -193,6 +193,7 @@ letters([],[]):-!.
 letters([H|T1],[H|T2]):- H >= 65, H =< 90, letters(T1,T2),!.
 letters([H|T1],[H|T2]):- H >= 97, H =< 122, letters(T1,T2),!.
 letters([H|T1],[H|T2]):- H >= 1040, H =< 1103, letters(T1,T2),!.
+letters([H|T1],[H|T2]):- (H = 1025; H = 1105), letters(T1,T2),!.
 letters([_|T],List):- letters(T,List).
 
 % 3
@@ -295,13 +296,45 @@ delete_elem_num([Head|Tail1],Num,[Head|Tail2]):-
 p6:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_str_count_words(List,CountWordsList), 
 	seen, sort_list(List,CountWordsList,[],SList), write1(SList).
 	
-read_str_count_words(List,CountWordsList):- read_str(A,_,Flag), count_words(A,0,C),
-	read_str_count_words([A],List,[C],CountWordsList,Flag).
+read_str_count_words(List,CountWordsList):- read_str(A,_,Flag), append([32],A,B),
+	count_words(B,0,C), read_str_count_words([A],List,[C],CountWordsList,Flag).
 	
 read_str_count_words(List,List,CountWordsList,CountWordsList,1):-!.
 
 read_str_count_words(Cur_list,List,CurCountWordsList,CountWordsList,0):-
-	read_str(A,_,Flag), append(Cur_list,[A],C_l), count_words(A,0,C),
-	append(CurCountWordsList, [C], NewCountWordsList),
+	read_str(A,_,Flag), append([32],A,B), append(Cur_list,[A],C_l), 
+	count_words(B,0,C), append(CurCountWordsList, [C], NewCountWordsList),
 	read_str_count_words(C_l,List,NewCountWordsList,CountWordsList,Flag).
+
+% 7
+p7:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_str_after(List,CountWordsList), 
+	seen, sort_list(List,CountWordsList,[],SList), write1(SList).
+	
+read_str_after(List,CountWordsList):- read_str(A,_,Flag), count_words_after_numbers(A,0,I), 
+	read_str_after([A],List,[I],CountWordsList,Flag).
+	
+read_str_after(List,List,CountWordsList,CountWordsList,1):-!.
+
+read_str_after(Cur_list,List,CurCountWordsList,CountWordsList,0):-
+	read_str(A,_,Flag), append(Cur_list,[A],C_l), count_words_after_numbers(A,0,I), 
+	append(CurCountWordsList, [I], NewCountWordsList),
+	read_str_after(C_l,List,NewCountWordsList,CountWordsList,Flag).
+
+count_words_after_numbers([],C,C):-!.
+count_words_after_numbers(List,I,C):- delete_space(List,List1), get_word(List1,W), 
+	delete_fword(List1,List2),
+	(is_number(W) -> words_after_numbers(List2,0,C1), C2 is I+C1,
+	count_words_after_numbers([],C2,C); count_words_after_numbers(List2,I,C)),!.
+
+words_after_numbers([],I,I):-!.
+words_after_numbers(List,I,C):- delete_space(List,List1), get_word(List1,W), 
+	delete_fword(List1,List2), 
+	(is_word(W) -> I1 is I+1; I1 is I), words_after_numbers(List2,I1,C),!.
+
+is_word([]):-!.
+is_word([H|T]):- (H >= 65, H =< 90; H >= 97, H =< 122; H >= 1040, H =< 1103; H = 1025; H = 1105),
+	is_word(T),!.
+
+
+
 
