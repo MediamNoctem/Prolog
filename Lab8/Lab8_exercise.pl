@@ -152,9 +152,7 @@ check_unique(List,UniqList):- delete_space(List,List1), get_word(List1,Word),
 	in_list(UniqList,Word), delete_fword(List1,L), check_unique(L,UniqList).
 	
 % 2_6
-%read_str(List,_),
-p2_6:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_str(List,_,_),
-	seen, append([32],List,L), append(L,[32],L1), count_words(L1,0,C), 
+p2_6:- read_str(List,_,_), append([32],List,L), append(L,[32],L1), count_words(L1,0,C), 
 	p2_6(L1,C,1,[],ResList), write_str(ResList).
 
 p2_6([],_,_,ResList,ResList):-!.
@@ -184,4 +182,16 @@ count_words([],K,K):-!.
 count_words([32,H2|T],I,K):- H2\=32, H2\=10, I1 is I+1, count_words(T,I1,K),!.
 count_words([_|T],I,K):- count_words(T,I,K),!.
 
+% 2_12
+p2_12:- read_str(A,_), digits(A,D), letters(A,L), append(D,L,List), write_str(List).
+
+digits([],[]):-!.
+digits([H|T1],[H|T2]):- H >= 48, H =< 57, digits(T1,T2),!.
+digits([_|T],List):- digits(T,List).
+
+letters([],[]):-!.
+letters([H|T1],[H|T2]):- H >= 65, H =< 90, letters(T1,T2),!.
+letters([H|T1],[H|T2]):- H >= 97, H =< 122, letters(T1,T2),!.
+letters([H|T1],[H|T2]):- H >= 1040, H =< 1103, letters(T1,T2),!.
+letters([_|T],List):- letters(T,List).
 
