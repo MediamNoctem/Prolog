@@ -86,6 +86,7 @@ in_list([_|T],El):-in_list(T,El).
 % Извлекаем слово из списка. В начале не должно быть пробела.
 % get_word(+List, Word).
 
+get_word([],[]):- !.
 get_word([32|_],[]):- !.
 get_word([H|T1],[H|T2]):- H\=32, get_word(T1,T2),!.
 
@@ -149,3 +150,38 @@ unique_words(List,CurList,L,R):- delete_space(CurList,List1), get_word(List1, Wo
 check_unique([],_):-!.
 check_unique(List,UniqList):- delete_space(List,List1), get_word(List1,Word),
 	in_list(UniqList,Word), delete_fword(List1,L), check_unique(L,UniqList).
+	
+% 2_6
+%read_str(List,_),
+p2_6:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_str(List,_,_),
+	seen, append([32],List,L), append(L,[32],L1), count_words(L1,0,C), 
+	p2_6(L1,C,1,[],ResList), write_str(ResList).
+
+p2_6([],_,_,ResList,ResList):-!.
+p2_6(List,C,I,ResList,ResL):- I > 1, I < C, delete_space(List,List1), 
+	get_word(List1, Word), delete_fword(List1,List2), length(Word,L), Len is L-1,
+	shuffle_list(Word,Len,Len,[],[],Res), append(ResList,Res,L1), append(L1,[32],L2),
+	I1 is I+1, p2_6(List2,C,I1,L2,ResL),!.
+p2_6(List,C,I,ResList,ResL):- delete_space(List,List1), get_word(List1, Word),
+	delete_fword(List1,List2), append(ResList,Word,L1), append(L1,[32],L2), 
+	I1 is I+1, p2_6(List2,C,I1,L2,ResL),!.
+
+shuffle_list(_,_,-1,_,ResList,ResList):-!.
+shuffle_list(List,Length,I,NumList,ResList,ResL):- random_between(0,Length,R),
+	not(in_list(NumList,R)), I1 is I-1,  list_el_numb(List,Elem,R),
+	append(ResList,[Elem],Res), append(NumList,[R],NumL),
+	shuffle_list(List,Length,I1,NumL,Res,ResL),!.
+	
+shuffle_list(List,Length,I,NumList,ResList,ResL):- 
+	shuffle_list(List,Length,I,NumList,ResList,ResL).
+
+list_el_numb(List,Elem,Number):- list_el_numb(List,Elem,0,Number).
+list_el_numb([Head|_],Head,Number,Number):-!.
+list_el_numb([_|Tail],Elem,I,Number):- I1 is I+1, list_el_numb(Tail,Elem,I1,Number).
+
+% В начале строки должен быть пробел.
+count_words([],K,K):-!.
+count_words([32,H2|T],I,K):- H2\=32, H2\=10, I1 is I+1, count_words(T,I1,K),!.
+count_words([_|T],I,K):- count_words(T,I,K),!.
+
+
