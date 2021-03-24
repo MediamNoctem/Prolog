@@ -408,3 +408,33 @@ max1(_,Y,Y).
 max_list([Head|Tail],Max):- max_list(Tail,Head,Max).
 max_list([],M,M):-!.
 max_list([Head|Tail],M,Max):- max1(Head,M,Max1), max_list(Tail,Max1,Max).
+
+% 8_6
+
+p8_6:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_list_str(List), seen,
+	list_el_numb(List,El,0), mediana(El,M), sort_mediana(List,List,M,0,[],SortList),
+	write1(SortList),!.
+	
+sort_mediana([],[],_,_,SortList,SortList):- !.
+
+sort_mediana(List,[],_,I,SortList,R):- list_el_numb(List,El,I),
+	append(SortList,[El],SL), delete_elem_num(List,I,CurList),
+	(CurList \= [] -> list_el_numb(CurList,H,0), mediana(H,M), 
+	sort_mediana(CurList,CurList,M,0,SL,R); 
+	sort_mediana(CurList,CurList,_,_,SL,R)),!.
+	
+sort_mediana(List,[H|T],M,I,SortList,R):- mediana(H,M1), 
+	(M1 < M -> M2 is M1, list_el_numb(List,H,I1); M2 is M, I1 is I),
+	sort_mediana(List,T,M2,I1,SortList,R).
+
+mediana(List,M):- sort_numb(List,S), length(S,L), 
+	(0 is L mod 2 -> mediana_even(S,L,M); mediana_odd(S,L,M)),!.
+	
+mediana_even(S,L,M):- N1 is L/2-1, list_el_numb(S,El1,N1), N2 is N1+1,
+	list_el_numb(S,El2,N2), M is (El1+El2)/2,!.
+	
+mediana_odd(S,L,M):- N is (L-1)/2, list_el_numb(S,M,N),!.
+
+sort_numb([],[]):-!.
+sort_numb(List,[M|T]):- min_list_down(List,M), list_el_numb(List,M,N),
+	delete_elem_num(List,N,L), sort_numb(L,T),!.
