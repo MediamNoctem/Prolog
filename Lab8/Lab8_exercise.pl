@@ -438,6 +438,26 @@ mediana_odd(S,L,M):- N is (L-1)/2, list_el_numb(S,M,N),!.
 sort_numb([],[]):-!.
 sort_numb(List,[M|T]):- min_list_down(List,M), list_el_numb(List,M,N),
 	delete_elem_num(List,N,L), sort_numb(L,T),!.
+	
+% 8_9
+p8_9:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), read_list_str(List), seen,
+	p8_9(List,Dev), sort_list(List,Dev,[],SortList), write1(SortList).
+	
+p8_9([],[]):-!.
+p8_9([H|T1],[O|T2]):- max_list(H,Max), reverse_list(H,R), length(H,L),
+	(0 is L mod 2 -> N is L/2; N is (L-1)/2), diff_mirror_pairs(H,R,0,N,0,S),
+	dispersion(Max,S,D), O is sqrt(D), p8_9(T1,T2).
+	
+dispersion(A,B,D):- C is (A+B)/2, T1 is (A-C)*(A-C), T2 is (B-C)*(B-C), D is T1+T2.
+
+reverse_list([],List):- reverse_list([],[],List),!.
+reverse_list([Head|Tail],List):- reverse_list([Head|Tail],[],List).
+reverse_list([],List1,List1):-!.
+reverse_list([Head|Tail],List_r, List):- reverse_list(Tail,[Head|List_r],List).
+
+diff_mirror_pairs(_,_,N,N,CurS,CurS):-!.
+diff_mirror_pairs([H1|T1],[H2|T2],I,N,CurS,S):- C is H1-H2, Cur is CurS+C,
+	I1 is I+1, diff_mirror_pairs(T1,T2,I1,N,Cur,S).
 
 % 8_10
 p8_10:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), 
