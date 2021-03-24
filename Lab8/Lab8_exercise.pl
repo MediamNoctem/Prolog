@@ -438,3 +438,27 @@ mediana_odd(S,L,M):- N is (L-1)/2, list_el_numb(S,M,N),!.
 sort_numb([],[]):-!.
 sort_numb(List,[M|T]):- min_list_down(List,M), list_el_numb(List,M,N),
 	delete_elem_num(List,N,L), sort_numb(L,T),!.
+
+% 8_10
+p8_10:- see('c:/Users/Anastasia/Desktop/p1_in.txt'), 
+	read_list_str_mirror(List,CountList), seen,
+	sort_list(List,CountList,[],SList), write1(SList).
+
+read_list_str_mirror(List,CountList):- read_str(A,N,Flag), 
+	count_mirror_three(A,0,C), (N > 2 -> T is N-2; T is 1), S is C/T,
+	read_list_str_mirror([A],List,[S],CountList,Flag).
+	
+read_list_str_mirror(List,List,CountList,CountList,1):-!.
+
+read_list_str_mirror(Cur_list,List,CurCountList,CountList,0):-
+	read_str(A,N,Flag), append(Cur_list,[A],C_l),
+	count_mirror_three(A,0,C), (N > 2 -> T is N-2; T is 1), S is C/T,
+	append(CurCountList,[S],NewCountList),
+	read_list_str_mirror(C_l,List,NewCountList,CountList,Flag).
+
+count_mirror_three([],C,C):-!.
+count_mirror_three([_],C,C):-!.
+count_mirror_three([_,_],C,C):-!.
+count_mirror_three([H1,H2,H1|T],C,Count):- C1 is C+1, 
+	count_mirror_three([H2,H1|T],C1,Count),!.
+count_mirror_three([_,H1,H2|T],C,Count):- count_mirror_three([H1,H2|T],C,Count).
