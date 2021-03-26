@@ -39,3 +39,10 @@ pr_subset:- read_str(A,_), sub_set(B,A), write_str(B), nl, fail.
 sub_set([],[]).
 sub_set([H|Sub_set],[H|Set]):- sub_set(Sub_set,Set).
 sub_set(Sub_set,[_|Set]):- sub_set(Sub_set,Set).
+
+% 1_5
+p1_5:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr_sochet, told.
+pr_sochet:- read_str(A,_), read(K), sochet(B,K,A), write_str(B), nl, fail.
+sochet([],0,_):-!.
+sochet([H|Sub_set],K,[H|Set]):- K1 is K-1, sochet(Sub_set,K1,Set).
+sochet(Sub_set,K,[_|Set]):- sochet(Sub_set,K,Set).
