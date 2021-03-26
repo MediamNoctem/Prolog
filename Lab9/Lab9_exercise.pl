@@ -54,3 +54,21 @@ sochet_p([],0,_):-!.
 sochet_p([H|Sub_set],K,[H|Set]):- K1 is K-1, sochet_p(Sub_set,K1,[H|Set]).
 sochet_p(Sub_set,K,[_|Set]):- sochet_p(Sub_set,K,Set).
 pr_sochet_p:- read_str(A,_), read(K), sochet_p(B,K,A), write_str(B), nl, fail.
+
+% 2
+p2:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr2, told.
+pr2:- Positions = [0,1,2,3,4], Itog_slovo = [_,_,_,_,_], 
+	sochet(A_positions,2,Positions), put_letter(Itog_slovo,A_positions,0,a),
+	in_list([b,c,d,e,f],El1), put_free(Itog_slovo,El1),
+	in_list([b,c,d,e,f],El2), put_free(Itog_slovo,El2),
+	in_list([b,c,d,e,f],El3), put_free(Itog_slovo,El3),
+	write(Itog_slovo), nl, fail.
+
+% put_letter(Word,Letter_positions,Letter).
+% Ставим букву Letter на все позиции Letter_positions в списке Word.
+put_letter(_,[],_,_):-!.
+put_letter([H|T1],[I|T2],I,H):- I1 is I+1, put_letter(T1,T2,I1,H),!.
+put_letter([_|T],Letter_positions,I,L):- I1 is I+1, put_letter(T,Letter_positions,I1,L).
+
+put_free([H|_],L):- var(H), H = L,!.
+put_free([_|T],L):- put_free(T,L),!.
