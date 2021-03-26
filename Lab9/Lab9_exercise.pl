@@ -177,4 +177,28 @@ pr10:- Positions = [0,1,2,3,4,5,6], Itog_slovo = [_,_,_,_,_,_,_], P = [1,2,3,4],
 	put_letter(Itog_slovo,L3_positions,0,El3),
 	put_letter(Itog_slovo,L4_positions,0,El4),
 	write_list(Itog_slovo), nl, fail.
-	
+
+% 11
+p11:- write("Введите n: "), read(N), write("Введите k: "), read(K), 
+	write("Введите m: "), read(M), S1 is 3*K+M, N >= S1, S2 is S1+2, N =< S2,
+	tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr11(N,K,M), told.
+pr11(N,K,M):- make_poslist(Positions,0,N), make_list(Itog_slovo,N), 
+	sochet(A_positions,K,Positions), del_sub(Positions,A_positions,P1),
+	sochet(B_positions,K,P1), del_sub(P1,B_positions,P2),
+	sochet(C_positions,K,P2), del_sub(P2,C_positions,P3),
+	sochet(D_positions,M,P3), 
+	put_letter(Itog_slovo,A_positions,0,a),
+	put_letter(Itog_slovo,B_positions,0,b),
+	put_letter(Itog_slovo,C_positions,0,c),
+	put_letter(Itog_slovo,D_positions,0,d),
+	S is N-(3*K+M),
+	(S = 2 -> in_list_exlude([e,f],El1,A1), put_free(Itog_slovo,El1),
+		in_list(A1,El2), put_free(Itog_slovo,El2);
+	(S = 1 -> in_list([e,f],El), put_free(Itog_slovo,El); true)), 
+	write_list(Itog_slovo), nl, fail.
+
+make_list([],0):-!.
+make_list([_|T],I):- I1 is I-1, make_list(T,I1).
+
+make_poslist([],N,N):-!.
+make_poslist([I|T],I,N):- I1 is I+1, make_poslist(T,I1,N).
