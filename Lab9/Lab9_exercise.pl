@@ -135,3 +135,10 @@ pr7:- Positions = [0,1,2,3,4,5,6,7,8], Itog_slovo = [_,_,_,_,_,_,_,_,_],
 	in_list_exlude(A2,El4,A3), put_free(Itog_slovo,El4),
 	in_list(A3,El5), put_free(Itog_slovo,El5),
 	write_list(Itog_slovo), nl, fail.
+	
+% 8
+p8:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr8, told.
+pr8:- Positions = [0,1,2,3], Itog_slovo = [_,_,_,_], P = [3,4], in_list_exlude(P,A,_),
+	sochet(A_positions,A,Positions), put_letter(Itog_slovo,A_positions,0,a),
+	(A = 3 -> in_list([b,c,d,e,f],El), put_free(Itog_slovo,El); true),
+	write_list(Itog_slovo), nl, fail.
