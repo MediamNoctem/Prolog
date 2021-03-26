@@ -159,3 +159,19 @@ pr9:- Positions = [0,1,2,3,4,5,6], Itog_slovo = [_,_,_,_,_,_,_], P = [3,4,5,6,7]
 		in_list([b,c,d,e,f],El2), put_free(Itog_slovo,El2);
 	(A = 6 -> in_list([b,c,d,e,f],El), put_free(Itog_slovo,El); true)))), 
 	write_list(Itog_slovo), nl, fail.
+
+% 10
+p10:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr10, told.
+pr10:- Positions = [0,1,2,3,4,5,6], Itog_slovo = [_,_,_,_,_,_,_], P = [1,2,3,4], 
+	sochet([El1,El2,El3,El4],4,[a,b,c,d,e,f]), in_list_exlude(P,NumEl1,_),
+	sochet(L1_positions,NumEl1,Positions), 
+	in_list_exlude(P,NumEl2,_), sochet(L2_positions,NumEl2,Positions), 
+	in_list_exlude(P,NumEl3,_), sochet(L3_positions,NumEl3,Positions), 
+	in_list_exlude(P,NumEl4,_), sochet(L4_positions,NumEl4,Positions), 
+	7 is NumEl1+NumEl2+NumEl3+NumEl4,
+	put_letter(Itog_slovo,L1_positions,0,El1),
+	put_letter(Itog_slovo,L2_positions,0,El2),
+	put_letter(Itog_slovo,L3_positions,0,El3),
+	put_letter(Itog_slovo,L4_positions,0,El4),
+	write_list(Itog_slovo), nl, fail.
+	
