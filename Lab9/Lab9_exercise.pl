@@ -19,3 +19,13 @@ build_all_razm_p:- read_str(A,_,_), read(K), b_a_rp(A,K,[]).
 		
 b_a_rp(_,0,Perm1):- write_str(Perm1), nl, !, fail.
 b_a_rp(A,N,Perm):- in_list(A,El), N1 is N-1, b_a_rp(A,N1,[El|Perm]).
+
+% 1_2
+p1_2:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), build_all_perm, told.
+build_all_perm:- read_str(A,_,_), b_a_p(A,[]).
+
+in_list_exlude([El|T],El,T).
+in_list_exlude([H|T],El,[H|Tail]):- in_list_exlude(T,El,Tail).
+
+b_a_p([],Perm1):- write_str(Perm1), nl, !, fail.
+b_a_p(A,Perm):- in_list_exlude(A,El,A1), b_a_p(A1,[El|Perm]).
