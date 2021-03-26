@@ -46,3 +46,11 @@ pr_sochet:- read_str(A,_), read(K), sochet(B,K,A), write_str(B), nl, fail.
 sochet([],0,_):-!.
 sochet([H|Sub_set],K,[H|Set]):- K1 is K-1, sochet(Sub_set,K1,Set).
 sochet(Sub_set,K,[_|Set]):- sochet(Sub_set,K,Set).
+
+% 1_6
+p1_6:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr_sochet_p, told.
+
+sochet_p([],0,_):-!.
+sochet_p([H|Sub_set],K,[H|Set]):- K1 is K-1, sochet_p(Sub_set,K1,[H|Set]).
+sochet_p(Sub_set,K,[_|Set]):- sochet_p(Sub_set,K,Set).
+pr_sochet_p:- read_str(A,_), read(K), sochet_p(B,K,A), write_str(B), nl, fail.
