@@ -84,3 +84,13 @@ pr3:- Positions = [0,1,2,3,4], Itog_slovo = [_,_,_,_,_],
 	in_list_exlude(A1,El2,A2), put_free(Itog_slovo,El2),
 	in_list(A2,El3), put_free(Itog_slovo,El3),
 	write_list(Itog_slovo), nl, fail.
+
+% 4
+p4:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr4, told.
+pr4:- Positions = [0,1,2,3,4], Itog_slovo = [_,_,_,_,_], 
+	in_list_exlude([a,b,c,d,e,f],El1,A1),
+	sochet(L_positions,2,Positions), put_letter(Itog_slovo,L_positions,0,El1),
+	in_list_exlude(A1,El2,A2), put_free(Itog_slovo,El2),
+	in_list_exlude(A2,El3,A3), put_free(Itog_slovo,El3),
+	in_list(A3,El4), put_free(Itog_slovo,El4),
+	write_list(Itog_slovo), nl, fail.
