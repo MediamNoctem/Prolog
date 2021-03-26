@@ -109,3 +109,15 @@ pr5:- Positions = [0,1,2,3,4,5], Itog_slovo = [_,_,_,_,_,_],
 del_sub(T,[],T):-!.
 del_sub([H|T1],[H|T2],List):- del_sub(T1,T2,List),!.
 del_sub([H|T1],List,[H|T3]):- del_sub(T1,List,T3).
+
+% 6
+p6:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr6, told.
+pr6:- Positions = [0,1,2,3,4,5,6], Itog_slovo = [_,_,_,_,_,_,_], 
+	in_list_exlude([a,b,c,d,e,f],El1,A1),
+	in_list_exlude(A1,El2,A2),
+	sochet(L1_positions,2,Positions), put_letter(Itog_slovo,L1_positions,0,El1),
+	del_sub(Positions,L1_positions,Pos),
+	sochet(L2_positions,3,Pos), put_letter(Itog_slovo,L2_positions,0,El2),
+	in_list_exlude(A2,El3,A3), put_free(Itog_slovo,El3),
+	in_list(A3,El4), put_free(Itog_slovo,El4),
+	write_list(Itog_slovo), nl, fail.
