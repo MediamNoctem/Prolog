@@ -121,3 +121,17 @@ pr6:- Positions = [0,1,2,3,4,5,6], Itog_slovo = [_,_,_,_,_,_,_],
 	in_list_exlude(A2,El3,A3), put_free(Itog_slovo,El3),
 	in_list(A3,El4), put_free(Itog_slovo,El4),
 	write_list(Itog_slovo), nl, fail.
+
+% 7
+p7:- tell('c:/Users/Anastasia/Desktop/p1_out.txt'), pr7, told.
+pr7:- Positions = [0,1,2,3,4,5,6,7,8], Itog_slovo = [_,_,_,_,_,_,_,_,_], 
+	sochet([El1,El2],2,[a,b,c,d,e,f]), del_sub([a,b,c,d,e,f],[El1,El2],A1),
+	in_list_exlude(A1,El3,A2),
+	sochet(L1_positions,2,Positions), put_letter(Itog_slovo,L1_positions,0,El1),
+	del_sub(Positions,L1_positions,Pos),
+	sochet(L2_positions,2,Pos), put_letter(Itog_slovo,L2_positions,0,El2),
+	del_sub(Pos,L2_positions,P),
+	sochet(L3_positions,3,P), put_letter(Itog_slovo,L3_positions,0,El3),
+	in_list_exlude(A2,El4,A3), put_free(Itog_slovo,El4),
+	in_list(A3,El5), put_free(Itog_slovo,El5),
+	write_list(Itog_slovo), nl, fail.
