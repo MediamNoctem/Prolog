@@ -464,16 +464,14 @@ p8_10:- see('c:/Users/Anastasia/Desktop/p1_in.txt'),
 	read_list_str_mirror(List,CountList), seen,
 	sort_list(List,CountList,[],SList), write1(SList).
 
-read_list_str_mirror(List,CountList):- read_str(A,N,Flag), 
-	count_mirror_three(A,0,C), (N > 2 -> T is N-2; T is 1), S is C/T,
-	read_list_str_mirror([A],List,[S],CountList,Flag).
+read_list_str_mirror(List,CountList):- read_str(A,_,Flag), 
+	count_mirror_three(A,0,C), read_list_str_mirror([A],List,[C],CountList,Flag).
 	
 read_list_str_mirror(List,List,CountList,CountList,1):-!.
 
 read_list_str_mirror(Cur_list,List,CurCountList,CountList,0):-
-	read_str(A,N,Flag), append(Cur_list,[A],C_l),
-	count_mirror_three(A,0,C), (N > 2 -> T is N-2; T is 1), S is C/T,
-	append(CurCountList,[S],NewCountList),
+	read_str(A,_,Flag), append(Cur_list,[A],C_l),
+	count_mirror_three(A,0,C), append(CurCountList,[C],NewCountList),
 	read_list_str_mirror(C_l,List,NewCountList,CountList,Flag).
 
 count_mirror_three([],C,C):-!.
