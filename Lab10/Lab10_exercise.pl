@@ -192,7 +192,7 @@ write_list([Head|Tail]):- write(Head), write(" "), write_list(Tail).
 % find_way(ListEdges,CurListWay,EndVertex,NotEnd,Drain,N,ListWays).
 % N - номер последнего ребра из истока.
 find_way(_,[],_,N,_,N,[]):-!.
-find_way(ListEdges,L,D,_,D,N,[L|T]):- delete_last_elem(L,L1,BeginningEdge),
+find_way(ListEdges,L,D,_,D,N,[L|T]):- delete_last_elem(L,L1,BeginningEdge,_),
 	find_way(ListEdges,L1,BeginningEdge,D,D,N,T),!.
 
 find_way(ListEdges,CurListWay,EndVertex,NotEnd,D,N,ListWays):- 
@@ -201,14 +201,14 @@ find_way(ListEdges,CurListWay,EndVertex,NotEnd,D,N,ListWays):-
 	append(CurListWay,[[EndVertex,Edge]],Cur),
 	find_way(ListEdges,Cur,Edge,-1,D,N,ListWays);
 	find_way(ListEdges,CurListWay,EndVertex,Edge,D,N,ListWays));
-	delete_last_elem(CurListWay,Cur,BeginningEdge),
+	delete_last_elem(CurListWay,Cur,BeginningEdge,_),
 	find_way(ListEdges,Cur,BeginningEdge,EndVertex,D,N,ListWays)).
 
 find_edge([[V1,V2]|_],V1,H,V2):- V2 > H, !.
 find_edge([_|T],Begin,End,Edge):- find_edge(T,Begin,End,Edge).
 
-delete_last_elem([[V1,_]],[],V1):-!.
-delete_last_elem([H|T1],[H|T2],V):- delete_last_elem(T1,T2,V).
+delete_last_elem([[V1,V2]],[],V1,V2):-!.
+delete_last_elem([H|T1],[H|T2],V1,V2):- delete_last_elem(T1,T2,V1,V2).
 
 make_matrix_0(_,0,[]):-!.
 make_matrix_0(L,N,[L|T]):- N1 is N-1, make_matrix_0(L,N1,T).
@@ -271,3 +271,49 @@ make_way(V,E,I,S,Way):- in_list_exlude(V,I,Tail), make_way(Tail,E,I,S,[I],Way).
 make_way(_,_,S,S,Way,Way):-!.
 make_way(V,E,I,S,Cur_Way,Way):-	in_list_exlude(V,X,Tail), in_list(E,[I,X]),
 	append1(Cur_Way,[X],C_W), make_way(Tail,E,X,S,C_W,Way).
+
+% 1_5
+p1_5:- get_graph_edges(V,E), write("K = "), read(K), make_ar(K,C), 
+	list_el_numb(V,BeginV,0), numb_ways_raskras(V,E,C,BeginV,C,0,NumWays),
+	write("Количество способов раскрасить данный граф в K цветов = "),
+	write(NumWays), write(".").
+
+numb_ways_raskras(_,_,_,_,[],N,N):-!.
+numb_ways_raskras(V,E,ListColor,BeginV,[H|T],N,NumWays):- 
+	raskras(V,E,ListColor,V,[H],BeginV,[],Ras), length(Ras,Len), N1 is N+Len,
+	numb_ways_raskras(V,E,ListColor,BeginV,T,N1,NumWays).
+
+make_ar(0,[]):-!.
+make_ar(K,[K|Tail]):- K1 is K-1, make_ar(K1,Tail).
+
+% raskras(V,E,ListColor,CurV,CurListColor,BeginV,CurRas,Ras).
+
+raskras(_,_,_,_,[],BeginV,CurRas,[]):-
+	delete_last_elem(CurRas,_,BeginV,_),!.
+	
+raskras(V,E,ListColor,[],_,BeginV,CurRas,[CurRas|T]):-
+	delete_last_elem(CurRas,NewRas,NewV,C), 
+	delete_before(ListColor,C,NewListColor),
+	raskras(V,E,ListColor,[NewV],NewListColor,BeginV,NewRas,T),!.
+
+raskras(V,E,ListColor,[V1|T],[],BeginV,CurRas,Ras):-
+	delete_last_elem(CurRas,NewRas,NewV,C), 
+	delete_before(ListColor,C,NewListColor),
+	append1([NewV],[V1|T],NewListV),
+	raskras(V,E,ListColor,NewListV,NewListColor,BeginV,NewRas,Ras),!.
+
+raskras(V,E,ListColor,[V1|T1],[C|T2],BeginV,CurRas,Ras):-
+	(check_color(V1,E,C,CurRas) -> append1(CurRas,[[V1,C]],Ras1),
+	raskras(V,E,ListColor,T1,ListColor,BeginV,Ras1,Ras);
+	raskras(V,E,ListColor,[V1|T1],T2,BeginV,CurRas,Ras)).
+
+delete_before([H|T],H,T):-!.
+delete_before([_|T],H,L):- delete_before(T,H,L).	
+
+check_color(_,_,_,[]):-!.
+check_color(V,E,C1,[[_,C2]|Tail]):- C1\=C2, check_color(V,E,C1,Tail), !.
+check_color(V,E,Col,[[Ver,Col]|Tail]):- not(in_list(E,[V,Ver])),
+	not(in_list(E,[Ver,V])), check_color(V,E,Col,Tail).
+	
+in_list1([El|_],El).
+in_list1([_|Tail],El):- in_list1(Tail,El).
