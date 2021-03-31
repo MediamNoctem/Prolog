@@ -271,6 +271,25 @@ make_way(V,E,I,S,Way):- in_list_exlude(V,I,Tail), make_way(Tail,E,I,S,[I],Way).
 make_way(_,_,S,S,Way,Way):-!.
 make_way(V,E,I,S,Cur_Way,Way):-	in_list_exlude(V,X,Tail), in_list(E,[I,X]),
 	append1(Cur_Way,[X],C_W), make_way(Tail,E,X,S,C_W,Way).
+	
+% 1_4
+p1_4:- get_graph_edges(V,E), build_graph_core(V,E,[],Core), write("Ядро = "),
+	write(Core),write(".").
+
+build_graph_core([],_,Core,Core):-!.
+
+build_graph_core([V|T1],E,CurCore,Core):- check_for_adjacency(V,E,CurCore,E), 
+	append1(CurCore,[V],NewCurCore), build_graph_core(T1,E,NewCurCore,Core),!.
+	
+build_graph_core([_|T],E,CurCore,Core):- build_graph_core(T,E,CurCore,Core).
+
+% Проверка смежности вершины V и других вершин из списка.
+% false, если хотя бы одна вершина из списка смежна с V.
+check_for_adjacency(V,_,[H|_],[[V,H]|_]):- !,fail.
+check_for_adjacency(V,_,[H|_],[[H,V]|_]):- !,fail.
+check_for_adjacency(_,_,[],_):-!.
+check_for_adjacency(V,E,[_|T1],[]):- check_for_adjacency(V,E,T1,E),!.
+check_for_adjacency(V,E,ListV,[_|T2]):- check_for_adjacency(V,E,ListV,T2).
 
 % 1_5
 p1_5:- get_graph_edges(V,E), write("K = "), read(K), make_ar(K,C), 
@@ -314,6 +333,3 @@ check_color(_,_,_,[]):-!.
 check_color(V,E,C1,[[_,C2]|Tail]):- C1\=C2, check_color(V,E,C1,Tail), !.
 check_color(V,E,Col,[[Ver,Col]|Tail]):- not(in_list(E,[V,Ver])),
 	not(in_list(E,[Ver,V])), check_color(V,E,Col,Tail).
-	
-in_list1([El|_],El).
-in_list1([_|Tail],El):- in_list1(Tail,El).
