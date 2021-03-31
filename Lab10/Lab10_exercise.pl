@@ -227,3 +227,47 @@ min_list_down([Head|Tail],M,Min):- min(Head,M,Min1), min_list_down(Tail,Min1,Min
 
 in_list([El|_],El):-!.
 in_list([_|Tail],El):- in_list(Tail,El).
+
+% 1_3
+p1_3:- get_graph_edges(V,E), length(V,Len), N is Len+1, find_short_way_all_v(V,V,E,N,S),
+	min_list_down(S,R), max_list(S,D), write("Радиус = "), write(R), write(","),
+	nl, write("Диаметр = "), write(D), write(".").
+
+find_short_way_all_v([],_,_,_,[]):-!.
+find_short_way_all_v([V1|T1],V,E,N,[S|T2]):- list_el_numb(V,V1,Num), 
+	delete_elem_num(V,Num,NewV), find_short_way(V1,NewV,V,E,N,0,S),
+	find_short_way_all_v(T1,V,E,N,T2).
+
+delete_elem_num([_|Tail],0,Tail):- !.
+delete_elem_num([Head|Tail1],Num,[Head|Tail2]):- Num1 is Num-1, delete_elem_num(Tail1,Num1,Tail2).
+
+max(X,Y,X):- X > Y, !.
+max(_,Y,Y).
+
+max_list([Head|Tail],Max):- max_list(Tail,Head,Max).
+max_list([],M,M):-!.
+max_list([Head|Tail],M,Max):- max(Head,M,Max1), max_list(Tail,Max1,Max).
+
+find_short_way(_,[],_,_,_,L,L):-!.
+find_short_way(V1,[V2|T1],V,E,N,CurLenWay,LenShortWay):- short_way(V,E,V1,V2,ShortWay,N),
+	length(ShortWay,Len), LenWay is Len-1, max(CurLenWay,LenWay,Max),
+	find_short_way(V1,T1,V,E,N,Max,LenShortWay).
+
+short_way(V,E,I,S,Way,Len):- short_way(V,E,I,S,Way,_,Len).
+short_way(V,E,I,S,Way,_,Len):- make_way(V,E,I,S,Cur_Way1), list_len(Cur_Way1,L),
+	L < Len, !, short_way(V,E,I,S,Way,Cur_Way1,L).
+short_way(_,_,_,_,Way,Way,_).
+
+list_len([],0):-!.
+list_len([_|T],L):-list_len(T,L1),L is L1+1.
+
+in_list_exlude([El|T],El,T).
+in_list_exlude([H|T],El,[H|Tail]):-in_list_exlude(T,El,Tail).
+
+append1([],X,X):-!.
+append1([H|T],X,[H |Z]):-append1(T,X,Z).
+
+make_way(V,E,I,S,Way):- in_list_exlude(V,I,Tail), make_way(Tail,E,I,S,[I],Way).
+make_way(_,_,S,S,Way,Way):-!.
+make_way(V,E,I,S,Cur_Way,Way):-	in_list_exlude(V,X,Tail), in_list(E,[I,X]),
+	append1(Cur_Way,[X],C_W), make_way(Tail,E,X,S,C_W,Way).
