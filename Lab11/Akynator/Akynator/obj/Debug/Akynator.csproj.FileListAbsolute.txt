@@ -1,0 +1,13 @@
+C:\Users\Anastasia\Desktop\Akynator\Akynator\bin\Debug\Akynator.exe.config
+C:\Users\Anastasia\Desktop\Akynator\Akynator\bin\Debug\Akynator.exe
+C:\Users\Anastasia\Desktop\Akynator\Akynator\bin\Debug\Akynator.pdb
+C:\Users\Anastasia\Desktop\Akynator\Akynator\bin\Debug\SwiPlCs.dll
+C:\Users\Anastasia\Desktop\Akynator\Akynator\bin\Debug\SwiPlCs.xml
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.Form1.resources
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.Properties.Resources.resources
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.csproj.GenerateResource.cache
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.csproj.CoreCompileInputs.cache
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.csproj.CopyComplete
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.exe
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.pdb
+C:\Users\Anastasia\Desktop\Akynator\Akynator\obj\Debug\Akynator.csprojAssemblyReference.cache
